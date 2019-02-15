@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.Container;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,13 +30,16 @@ public class RegistroSinReserva extends JFrame{
     JLabel etqTlcel = new JLabel("Digite el numero del telefono celular");
     JTextField textNId = new JTextField();
     JTextField textNombre = new JTextField();
-    JTextField textAoellido = new JTextField();
+    JTextField textApellido = new JTextField();
     JTextField textPais = new JTextField();
     JTextField textCiudad = new JTextField();
     JTextField textBarrio = new JTextField();
     JTextField textDir = new JTextField();
     JTextField textTlfijo = new JTextField();
     JTextField textTlcel = new JTextField();
+    JButton btnEnv = new JButton("ENVIAR");
+    JButton btnVol = new JButton("VOLVER");
+    JButton btnDis = new JButton("Consultar disponibilidad");
     
     String[] TipId = {"Cedula de ciudadania", "Tarjeta de identidad", "Cedula de extranjeria"};
     JComboBox<String> cbTId = new JComboBox<String>();
@@ -59,13 +63,17 @@ public class RegistroSinReserva extends JFrame{
         c.add(textNId);
         c.add(cbTId);
         c.add(textNombre);
-        c.add(textAoellido);
+        c.add(textApellido);
         c.add(textPais);
         c.add(textCiudad);
         c.add(textBarrio);
         c.add(textDir);
         c.add(textTlfijo);
         c.add(textTlcel);
+        c.add(btnDis);
+        c.add(btnEnv);
+        c.add(btnVol);
+        
         
         etqNId.setBounds(50, 100, 200, 25);
         etqTId.setBounds(50, 130, 200, 25);
@@ -89,21 +97,45 @@ public class RegistroSinReserva extends JFrame{
             }
         });
         textNombre.setBounds(300,160,150,25);
-        textAoellido.setBounds(300,190,150,25);
+        textApellido.setBounds(300,190,150,25);
         textPais.setBounds(300,220,150,25);
         textCiudad.setBounds(300,250,150,25);
         textBarrio.setBounds(300,280,150,25);
         textDir.setBounds(300,310,150,25);
         textTlfijo.setBounds(300,340,150,25);
         textTlcel.setBounds(300,370,150,25);
+        btnEnv.setBounds(250, 400, 250, 35);
+        btnDis.setBounds(50, 50, 250, 35);
+        btnVol.setBounds(50, 400, 100, 35);
+        btnVol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolActionPerformed(evt);
+            }
+        });
+        btnEnv.setEnabled(false);
+        
         
         setVisible(true);
         setSize(600,600);
         
         
     }
+    //Es el actionPerfomed para enviar el tipo de documento
     public void cbTIdActionPerformed(java.awt.event.ActionEvent evt) {
+        cbTId.getSelectedItem().toString();
+        if (cbTId.getSelectedItem().toString() == "Cedula de ciudadania") {
+           //Insertar el cc a la clase Persona
+           
+        }else if (cbTId.getSelectedItem().toString() == "Tarjeta de identidad"){
+            //Insertar el ti a la clase Persona
+        }else if (cbTId.getSelectedItem().toString() == "Pasaporte"){
+            //Insertar el pp a la clase Persona
+        }
         
+    }
+    public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
+        Menu m = new Menu();
+        setVisible(false);       
     }
     
     

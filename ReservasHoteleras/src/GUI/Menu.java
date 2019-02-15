@@ -44,12 +44,10 @@ public class Menu extends JFrame{
         });
         checkout.setBounds(100,130,100,25);
         c.add(pedirProd);
-        pedirProd.setBounds(55,170,200,25);       
-    }
-    public void mostrar(){
-        setSize(350,300);
+        pedirProd.setBounds(55,170,200,25); 
         setVisible(true);
-        
+        setSize(350,300);
+                
     }
     public void checkinActionPerformed(java.awt.event.ActionEvent evt) { 
         Pregunta p = new Pregunta();
