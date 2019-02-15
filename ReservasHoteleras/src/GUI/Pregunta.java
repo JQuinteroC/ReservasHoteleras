@@ -18,6 +18,7 @@ public class Pregunta extends JFrame{
     JLabel preg = new JLabel("¿Realizo la reserva?");
     JButton btnSi = new JButton("SI");
     JButton btnNo = new JButton("NO");
+    JButton btnVol = new JButton("VOLVER");
 
     public Pregunta() {
         Container c = getContentPane();
@@ -28,6 +29,7 @@ public class Pregunta extends JFrame{
         c.add(preg);
         c.add(btnSi);
         c.add(btnNo);
+        c.add(btnVol);
         preg.setBounds(80, 15, 200, 35);
         btnSi.setBounds(80, 50, 90, 25);
         btnNo.setBounds(80, 90, 90, 25);
@@ -36,11 +38,22 @@ public class Pregunta extends JFrame{
                 btnNoActionPerformed(evt);
             }
         });
+        btnVol.setBounds(80, 130, 100, 25);
+        btnVol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolActionPerformed(evt);
+            }
+        });     
+        
         setVisible(true);
         setSize(300,300);
     }
     public void btnNoActionPerformed(java.awt.event.ActionEvent evt) { 
         RegistroSinReserva r = new RegistroSinReserva();
+        setVisible(false);       
+    }
+    public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
+        Menu m = new Menu();
         setVisible(false);       
     }
     
