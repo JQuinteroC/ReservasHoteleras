@@ -14,11 +14,18 @@ import java.sql.Date;
 public class Reserva {
     
     private int id_reserva;
-    private Date fecha_inicio;
-    private Date fecha_reserva;
+    private Date f_inicio;
+    private Date f_reserva;
     private int dias;
-
-
+    String estado;
+//método constructor
+Reserva(){
+    f_inicio = new Date(0);
+    f_reserva = new Date(0);
+    id_reserva=0;
+    estado="";
+    dias=0;
+}
 
     
     

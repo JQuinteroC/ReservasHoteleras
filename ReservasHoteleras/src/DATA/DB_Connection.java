@@ -16,7 +16,7 @@ public class DB_Connection {
   public static void main (String args []) throws SQLException
   {    
 
-    DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
+//    DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
 
     Connection conn = DriverManager.getConnection
           ("jdbc:oracle:thin:@WIN01:1521:oracleBD", "user", "passw");
