@@ -6,27 +6,29 @@
 package LOGIC;
 
 import java.sql.Date;
-
+import GUI.RegistroSinReserva;
 /**
  *
  * @author estudiantes
  */
 public class Persona {
+    //RegistroSinReserva datos = new RegistroSinReserva();
+    
     private String nombres;
     private String apellidos;
     private int documento;
-    private int telfijo;
-    private int telmovil;
+    private long telfijo;
+    private long telmovil;
     public String barrio;
     public String ciudad;
     public String direccion;
     public String pais;
-    public String tipo;
+    public String tipo_doc;
     public Date f_nacimiento;
     public boolean rol;
     
 //método constructor    
-    Persona(){
+    public Persona(){
         nombres="";
         apellidos="";
         barrio="";
@@ -36,7 +38,7 @@ public class Persona {
         telmovil=0;
         direccion="";
         pais="";
-        tipo="";
+        tipo_doc="";
         f_nacimiento = new Date(0);
         rol=false;//si es huesped
     }
@@ -66,23 +68,25 @@ public class Persona {
         this.documento = documento;
     }
 
-    public int getTelfijo() {
+    public long getTelfijo() {
         return telfijo;
     }
 
-    public void setTelfijo(int telfijo) {
+    public void setTelfijo(long telfijo) {
         this.telfijo = telfijo;
     }
 
-    public int getTelmovil() {
+    public long getTelmovil() {
         return telmovil;
     }
 
-    public void setTelmovil(int telmovil) {
+    public void setTelmovil(long telmovil) {
         this.telmovil = telmovil;
     }
 
-    
+  
+
+
     
     
     

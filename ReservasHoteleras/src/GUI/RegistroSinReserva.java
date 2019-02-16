@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
-
+import LOGIC.Persona;
 import java.awt.Container;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -18,6 +18,7 @@ import javax.swing.JTextField;
  * @author estudiantes
  */
 public class RegistroSinReserva extends JFrame{
+Persona p = new Persona();
     JLabel etqNId = new JLabel("Digite el numero de identificacion");
     JLabel etqTId = new JLabel("Digite el tipo de documento");
     JLabel etqNombre = new JLabel("Digite sus nombres");
@@ -45,6 +46,7 @@ public class RegistroSinReserva extends JFrame{
     JComboBox<String> cbTId = new JComboBox<String>();
     
     public RegistroSinReserva() {
+            
         Container c = getContentPane();
         c.setLayout(null);
         this.setTitle("Registro sin reserva");
@@ -105,6 +107,11 @@ public class RegistroSinReserva extends JFrame{
         textTlfijo.setBounds(300,340,150,25);
         textTlcel.setBounds(300,370,150,25);
         btnEnv.setBounds(250, 400, 250, 35);
+        btnEnv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEnvActionPerformed(evt);
+        }
+        });
         btnDis.setBounds(50, 50, 250, 35);
         btnVol.setBounds(50, 400, 100, 35);
         btnVol.addActionListener(new java.awt.event.ActionListener() {
@@ -112,32 +119,73 @@ public class RegistroSinReserva extends JFrame{
                 btnVolActionPerformed(evt);
             }
         });
-        btnEnv.setEnabled(false);
         
         
+       
+        btnEnv.setEnabled(true);
         setVisible(true);
         setSize(600,600);
         
         
     }
+    
     //Es el actionPerfomed para enviar el tipo de documento
     public void cbTIdActionPerformed(java.awt.event.ActionEvent evt) {
-        cbTId.getSelectedItem().toString();
-        if (cbTId.getSelectedItem().toString() == "Cedula de ciudadania") {
-           //Insertar el cc a la clase Persona
-           
-        }else if (cbTId.getSelectedItem().toString() == "Tarjeta de identidad"){
-            //Insertar el ti a la clase Persona
-        }else if (cbTId.getSelectedItem().toString() == "Pasaporte"){
-            //Insertar el pp a la clase Persona
+        
+        if ("Cedula de ciudadania".equals(cbTId.getSelectedItem().toString())){
+        p.tipo_doc="CC";//envio la cadena de caracteres al aributo en la calse persona
+        System.out.println("TIPO:"+p.tipo_doc);
         }
         
+        else {
+            if ("Tarjeta de identidad".equals(cbTId.getSelectedItem().toString())){
+             p.tipo_doc="TI";//envio la cadena de caracteres al aributo en la clase persona
+             System.out.println("TIPO:"+p.tipo_doc);
+        }
+            else{
+             p.tipo_doc="PP";//envio la cadena de caracteres al aributo en la calse persona
+             System.out.println("TIPO:"+p.tipo_doc);
+            }
+            
+        } 
     }
+     public void btnEnvActionPerformed(java.awt.event.ActionEvent evt1) {
+        int numdocu = Integer.parseInt(textNId.getText());
+        p.setDocumento(numdocu);
+        System.out.println("Doc en persona: "+p.getDocumento());
+        
+        p.setNombres(textNombre.getText());
+        System.out.println("Nombres en persona: "+p.getNombres());
+        
+        p.setApellidos(textApellido.getText());
+        System.out.println("Apellidos en persona: "+p.getApellidos());
+        
+        long lg = Long.parseLong(textTlfijo.getText());
+        p.setTelfijo(lg);
+        System.out.println("#Fijo en persona: "+p.getTelfijo());
+        
+        long lg2 = Long.parseLong(textTlcel.getText());
+        p.setTelmovil(lg2);
+        System.out.println("Movil en persona: "+p.getTelmovil());
+        
+        p.barrio=textBarrio.getText();
+        System.out.println("barrio en persona: "+p.barrio);
+        
+        p.pais=textPais.getText();
+        System.out.println("Pais en persona: "+p.pais);
+        
+        p.ciudad=textCiudad.getText();
+        System.out.println("Ciudad en persona: "+p.ciudad);
+        
+       p.direccion=textDir.getText();
+        System.out.println("Direccion en persona: "+p.direccion);
+        
+    }
+     
     public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
         Menu m = new Menu();
         setVisible(false);       
     }
-    
-    
+   
     
 }
