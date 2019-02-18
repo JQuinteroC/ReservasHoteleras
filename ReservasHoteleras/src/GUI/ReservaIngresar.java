@@ -116,6 +116,7 @@ public class ReservaIngresar extends JFrame{
     }
     public void btnRegActionPerformed(java.awt.event.ActionEvent evt) {
         JOptionPane.showMessageDialog(this, "Registro Exitoso");
+        setVisible(false);
     }
     
     
