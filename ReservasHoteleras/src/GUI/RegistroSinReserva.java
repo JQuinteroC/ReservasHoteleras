@@ -6,7 +6,6 @@
 package GUI;
 import LOGIC.Persona;
 import java.awt.Container;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -18,7 +17,7 @@ import javax.swing.JTextField;
  * @author estudiantes
  */
 public class RegistroSinReserva extends JFrame{
-Persona p = new Persona();
+    Persona p = new Persona();
     JLabel etqNId = new JLabel("Digite el numero de identificacion");
     JLabel etqTId = new JLabel("Digite el tipo de documento");
     JLabel etqNombre = new JLabel("Digite sus nombres");
@@ -42,7 +41,7 @@ Persona p = new Persona();
     JButton btnVol = new JButton("VOLVER");
     JButton btnDis = new JButton("Consultar disponibilidad");
     
-    String[] TipId = {"Cedula de ciudadania", "Tarjeta de identidad", "Cedula de extranjeria"};
+    
     JComboBox<String> cbTId = new JComboBox<String>();
     
     public RegistroSinReserva() {

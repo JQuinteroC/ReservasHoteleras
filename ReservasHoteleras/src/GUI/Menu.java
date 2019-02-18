@@ -5,12 +5,11 @@
  */
 package GUI;
 
-import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -31,26 +30,36 @@ public class Menu extends JFrame{
         
         
         c.add(subt);
-        subt.setBounds(90, 15, 200, 30);
+        subt.setFont(new Font("dialog", 1, 24));
+        subt.setBounds(20, 15, 300, 30);
         c.add(res);
-        res.setBounds(100,50,100,25);
+        res.setBounds(100,80,100,25);
+        res.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resActionPerformed(evt);
+            }
+        });
         c.add(checkin);
-        checkin.setBounds(100,90,100,25);
+        checkin.setBounds(100,120,100,25);
         c.add(checkout);
         checkin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkinActionPerformed(evt);
             }
         });
-        checkout.setBounds(100,130,100,25);
+        checkout.setBounds(100,160,100,25);
         c.add(pedirProd);
-        pedirProd.setBounds(55,170,200,25); 
+        pedirProd.setBounds(55,200,200,25); 
         setVisible(true);
-        setSize(350,300);
+        setSize(370,350);
                 
     }
     public void checkinActionPerformed(java.awt.event.ActionEvent evt) { 
         Pregunta p = new Pregunta();
+        setVisible(false);       
+    }
+    public void resActionPerformed(java.awt.event.ActionEvent evt) { 
+        Reserva r = new Reserva();
         setVisible(false);       
     }
     
