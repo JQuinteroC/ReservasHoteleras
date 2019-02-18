@@ -29,6 +29,7 @@ public class Menu extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
+        
         c.add(subt);
         subt.setFont(new Font("dialog", 1, 24));
         subt.setBounds(20, 15, 300, 30);

@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -104,9 +105,17 @@ public class ReservaIngresar extends JFrame{
         textTlfijo.setBounds(300,340,150,25);
         textTlcel.setBounds(300,370,150,25);
         btnReg.setBounds(215, 485, 150, 35);
+        btnReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegActionPerformed(evt);
+            }
+        });
         
         setVisible(true);
         setSize(600,600);
+    }
+    public void btnRegActionPerformed(java.awt.event.ActionEvent evt) {
+        JOptionPane.showMessageDialog(this, "Registro Exitoso");
     }
     
     

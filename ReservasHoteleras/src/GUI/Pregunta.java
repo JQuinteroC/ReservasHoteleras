@@ -32,6 +32,11 @@ public class Pregunta extends JFrame{
         c.add(btnVol);
         preg.setBounds(80, 15, 200, 35);
         btnSi.setBounds(80, 50, 90, 25);
+        btnSi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiActionPerformed(evt);
+            }
+        });
         btnNo.setBounds(80, 90, 90, 25);
         btnNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,8 +53,12 @@ public class Pregunta extends JFrame{
         setVisible(true);
         setSize(300,300);
     }
+    public void btnSiActionPerformed(java.awt.event.ActionEvent evt) { 
+        RegistroConReserva rcr = new RegistroConReserva();
+        setVisible(false);       
+    }
     public void btnNoActionPerformed(java.awt.event.ActionEvent evt) { 
-        RegistroSinReserva r = new RegistroSinReserva();
+        RegistroSinReserva rsr = new RegistroSinReserva();
         setVisible(false);       
     }
     public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
