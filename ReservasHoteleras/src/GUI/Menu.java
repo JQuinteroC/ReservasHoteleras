@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,8 +33,14 @@ public class Menu extends JFrame{
         
         c.add(subt);
         subt.setBounds(90, 15, 200, 30);
+        
+        // Reserva
         c.add(res);
         res.setBounds(100,50,100,25);
+        res.addActionListener((ActionEvent e) -> {
+            resActionPerformed(e);
+        });
+        
         c.add(checkin);
         checkin.setBounds(100,90,100,25);
         c.add(checkout);
@@ -47,13 +54,16 @@ public class Menu extends JFrame{
         pedirProd.setBounds(55,170,200,25); 
         setVisible(true);
         setSize(350,300);
-                
+        this.setLocationRelativeTo(null);
     }
     public void checkinActionPerformed(java.awt.event.ActionEvent evt) { 
         Pregunta p = new Pregunta();
         setVisible(false);       
     }
     
-    
+    public void resActionPerformed(java.awt.event.ActionEvent evt){
+        Reserva r = new Reserva();
+        setVisible(false);
+    }
     
 }

@@ -47,6 +47,7 @@ public class Pregunta extends JFrame{
         
         setVisible(true);
         setSize(300,300);
+        this.setLocationRelativeTo(null);
     }
     public void btnNoActionPerformed(java.awt.event.ActionEvent evt) { 
         RegistroSinReserva r = new RegistroSinReserva();

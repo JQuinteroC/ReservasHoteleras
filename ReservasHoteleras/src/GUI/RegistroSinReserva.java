@@ -117,8 +117,7 @@ public class RegistroSinReserva extends JFrame{
         
         setVisible(true);
         setSize(600,600);
-        
-        
+        this.setLocationRelativeTo(null);
     }
     //Es el actionPerfomed para enviar el tipo de documento
     public void cbTIdActionPerformed(java.awt.event.ActionEvent evt) {
