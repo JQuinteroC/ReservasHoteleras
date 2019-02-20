@@ -9,6 +9,7 @@ import java.awt.Container;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -26,6 +27,7 @@ public class Reserva extends JFrame {
     JTable tblHabiciones = new JTable();
     JButton btnVol = new JButton("VOLVER");
     JButton btnRes = new JButton("RESERVAR");
+    JScrollPane sclP = new JScrollPane (tblHabiciones);
 
     public Reserva() {
         Container c = getContentPane();
@@ -82,7 +84,7 @@ public class Reserva extends JFrame {
         c.add(textNoches);
         c.add(spnFInicio);
         c.add(btnVol);
-        c.add(tblHabiciones);
+        c.add(sclP);
         c.add(btnRes);
         
         etqFInicio.setBounds(30, 30, 200, 25);
@@ -90,7 +92,7 @@ public class Reserva extends JFrame {
         etqNoches.setBounds(350, 30, 200, 25);
         textNoches.setBounds(350, 60, 100, 25);
         etqHabitaciones.setBounds(30,100,200,25);
-        tblHabiciones.setBounds(30,130,510,250);
+        sclP.setBounds(30,130,510,250);
         btnVol.setBounds(30, 400, 100, 35);
         btnRes.setBounds(440, 400, 100, 35);
 
