@@ -36,6 +36,8 @@ public class Facturacion extends JFrame{
     public Facturacion(){
         Container c = getContentPane();
         c.setLayout(null);
+        this.setTitle("Facturacion");
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         c.add(etqTit);
         c.add(etqDoc);
