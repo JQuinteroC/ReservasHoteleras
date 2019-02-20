@@ -5,8 +5,11 @@
  */
 package GUI;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,47 +20,61 @@ import javax.swing.JLabel;
  */
 public class Menu extends JFrame{
     JLabel subt = new JLabel("¿Que desea realizar?");
-    JButton res = new JButton("Reserva");
-    JButton checkin = new JButton("Check-In");
-    JButton checkout = new JButton("Check-out");
-    JButton pedirProd = new JButton("Solicitar producto o servicio");
-
+    ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/reserva.png"));
+    Image imagen = icono.getImage();
+    ImageIcon icnEsc = new ImageIcon(imagen.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+    ImageIcon icono2 = new ImageIcon(getClass().getResource("/Imagenes/checkin.png"));
+    Image imagen2 = icono2.getImage();
+    ImageIcon icnEsc2 = new ImageIcon(imagen2.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+    ImageIcon icono3 = new ImageIcon(getClass().getResource("/Imagenes/cout.png"));
+    Image imagen3 = icono3.getImage();
+    ImageIcon icnEsc3 = new ImageIcon(imagen3.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+    ImageIcon icono4 = new ImageIcon(getClass().getResource("/Imagenes/solic.png"));
+    Image imagen4 = icono4.getImage();
+    ImageIcon icnEsc4 = new ImageIcon(imagen4.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+    JButton res = new JButton(icnEsc);
+    JButton checkin = new JButton(icnEsc2);
+    JButton checkout = new JButton(icnEsc3);
+    JButton pedirProd = new JButton(icnEsc4);
+    
     public Menu(){
         Container c = getContentPane();
         c.setLayout(null);
         this.setTitle("Menu");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        c.setBackground(Color.DARK_GRAY);
         
         
         
         c.add(subt);
         subt.setFont(new Font("dialog", 1, 24));
-        subt.setBounds(20, 15, 300, 30);
+        subt.setForeground(Color.white);
+        subt.setBounds(90, 15, 300, 30);
         c.add(res);
-        res.setBounds(100,80,100,25);
+        res.setBounds(80,80,100,100);
         res.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resActionPerformed(evt);
             }
         });
         c.add(checkin);
-        checkin.setBounds(100,120,100,25);
+        checkin.setBounds(200,80,100,100);
         c.add(checkout);
         checkin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkinActionPerformed(evt);
             }
         });
-        checkout.setBounds(100,160,100,25);
+        checkout.setBounds(80,230,100,100);
         checkout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkoutActionPerformed(evt);
             }
         });
         c.add(pedirProd);
-        pedirProd.setBounds(55,200,200,25); 
+        pedirProd.setBounds(200,230,100,100); 
         setVisible(true);
-        setSize(370,350);
+        setSize(440,420);
                 
     }
     public void checkinActionPerformed(java.awt.event.ActionEvent evt) { 

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.HeadlessException;
 import javax.swing.JButton;
@@ -27,6 +28,7 @@ public class RegistroConReserva extends JFrame{
         c.setLayout(null);
         this.setTitle("Registro con reserva");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        c.setBackground(Color.DARK_GRAY);
         
         c.add(etqDig);
         c.add(txtNumRes);

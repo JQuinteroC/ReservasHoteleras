@@ -39,6 +39,7 @@ public class Facturacion extends JFrame{
         this.setTitle("Facturacion");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
+        c.setBackground(Color.DARK_GRAY);
         c.add(etqTit);
         c.add(etqDoc);
         c.add(etqNumHab);

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,6 +27,7 @@ public class Pregunta extends JFrame{
         this.setTitle("Pregunta");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        c.setBackground(Color.DARK_GRAY);
         c.add(preg);
         c.add(btnSi);
         c.add(btnNo);

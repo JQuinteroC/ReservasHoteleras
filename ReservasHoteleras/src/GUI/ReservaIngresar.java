@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.HeadlessException;
@@ -51,6 +52,7 @@ public class ReservaIngresar extends JFrame{
         this.setTitle("Registro persona con reserva");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        c.setBackground(Color.DARK_GRAY);
         c.add(etqPrin);
         c.add(etqNId);
         c.add(etqTId);

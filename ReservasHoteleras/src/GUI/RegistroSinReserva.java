@@ -5,6 +5,7 @@
  */
 package GUI;
 import LOGIC.Persona;
+import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -51,6 +52,7 @@ public class RegistroSinReserva extends JFrame{
         this.setTitle("Registro sin reserva");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        c.setBackground(Color.DARK_GRAY);
         c.add(etqNId);
         c.add(etqTId);
         c.add(etqNombre);

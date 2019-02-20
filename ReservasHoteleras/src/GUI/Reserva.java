@@ -7,6 +7,7 @@ package GUI;
 
 import LOGIC.FormatoCalendar;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -41,6 +42,7 @@ public class Reserva extends JFrame{
         this.setTitle("Reserva");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
+        c.setBackground(Color.DARK_GRAY);
         c.add(lblFecha);
         c.add(lblNoches);
         c.add(lblHabDis);
