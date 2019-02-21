@@ -52,7 +52,7 @@ public class Facturacion extends JFrame{
         //c.setBackground(Color.DARK_GRAY);
         
         etqTit.setFont(new Font("dialog", 1, 24));
-        etqTit.setForeground(Color.white);
+        etqTit.setForeground(Color.GREEN);
         etqTit.setBounds(140, 40, 200, 35);
         etqDoc.setBounds(100, 80, 200, 35);
         etqDoc.setForeground(Color.white);

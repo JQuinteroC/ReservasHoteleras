@@ -35,7 +35,7 @@ public class Pregunta extends JFrame{
         c.add(btnVol);
         preg.setBounds(20, 15, 300, 35);
         preg.setFont(new Font("dialog", 1, 24));
-        preg.setForeground(Color.white);
+        preg.setForeground(Color.GREEN);
         btnSi.setBounds(80, 70, 90, 25);
         btnSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

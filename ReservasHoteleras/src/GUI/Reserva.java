@@ -22,6 +22,7 @@ import javax.swing.JTextField;
  * @author david
  */
 public class Reserva extends JFrame{
+    JLabel lblNomb = new JLabel("Reservar");
     JLabel lblFecha = new JLabel("Fecha de inicio");
     JLabel lblNoches = new JLabel("Noches ha hospedarse");
     JLabel lblHabDis = new JLabel("Habitaciones disponibles");
@@ -43,6 +44,7 @@ public class Reserva extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         c.setBackground(Color.DARK_GRAY);
+        c.add(lblNomb);
         c.add(lblFecha);
         c.add(lblNoches);
         c.add(lblHabDis);
@@ -54,6 +56,9 @@ public class Reserva extends JFrame{
         c.add(txtObtDate);
         c.add(scroll);
         
+        lblNomb.setFont(new Font("dialog", 1, 24));
+        lblNomb.setForeground(Color.GREEN);
+        lblNomb.setBounds(50, 20, 200, 35);
         lblFecha.setFont(new Font("dialog", 1, 24));
         lblFecha.setForeground(Color.white);
         lblNoches.setFont(new Font("dialog", 1, 24));
@@ -96,7 +101,7 @@ public class Reserva extends JFrame{
             }
         });
         jd.setBounds(45, 105, 150, 35);
-        txtObtDate.setBounds(10, 150, 150, 35);
+        //txtObtDate.setBounds(10, 150, 150, 35);
         
         setVisible(true);
         setSize(800,750);

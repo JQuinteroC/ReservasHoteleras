@@ -48,7 +48,7 @@ public class Menu extends JFrame{
         
         c.add(subt);
         subt.setFont(new Font("dialog", 1, 24));
-        subt.setForeground(Color.white);
+        subt.setForeground(Color.GREEN);
         subt.setBounds(90, 15, 300, 30);
         c.add(res);
         res.setBounds(80,80,100,100);
@@ -72,7 +72,12 @@ public class Menu extends JFrame{
             }
         });
         c.add(pedirProd);
-        pedirProd.setBounds(230,230,100,100); 
+        pedirProd.setBounds(230,230,100,100);
+        pedirProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pedirProdActionPerformed(evt);
+            }
+        });
         setVisible(true);
         setSize(440,420);
                 
@@ -87,6 +92,10 @@ public class Menu extends JFrame{
     }
     public void resActionPerformed(java.awt.event.ActionEvent evt) { 
         Reserva r = new Reserva();
+        setVisible(false);       
+    }
+    public void pedirProdActionPerformed(java.awt.event.ActionEvent evt) { 
+        Solicitud s = new Solicitud();
         setVisible(false);       
     }
     

@@ -44,9 +44,9 @@ public class Factura extends JFrame{
         c.add(btnImp);
         c.add(btnVol);
         
-        etqNombHot.setBounds(50, 20, 200, 100);
+        etqNombHot.setBounds(50, 20, 200, 180);
         etqNombHot.setFont(new Font("dialog", 1, 20));
-        etqNombHot.setForeground(Color.WHITE);
+        etqNombHot.setForeground(Color.GREEN);
         etqFac.setBounds(420, 50, 100, 35);
         etqFac.setForeground(Color.WHITE);
         scDatos.setBounds(100, 150, 450, 200);

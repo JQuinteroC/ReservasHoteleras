@@ -79,7 +79,7 @@ public class ReservaIngresoDatos extends JFrame{
         c.add(btnReg);        
         
         etqPrin.setFont(new Font("dialog", 1, 24));
-        etqPrin.setForeground(Color.white);
+        etqPrin.setForeground(Color.GREEN);
         etqPrin.setBounds(25, 50, 300, 25);
         etqNId.setForeground(Color.white);
         etqNId.setBounds(50, 100, 200, 25);

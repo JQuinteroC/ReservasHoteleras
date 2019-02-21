@@ -7,6 +7,7 @@ package GUI;
 import LOGIC.Persona;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import javax.swing.JTextField;
  */
 public class RegistroSinReserva extends JFrame{
     Persona p = new Persona();
+    JLabel etqNomb = new JLabel("Registro de datos");
     JLabel etqNId = new JLabel("Digite el numero de identificacion");
     JLabel etqTId = new JLabel("Digite el tipo de documento");
     JLabel etqNombre = new JLabel("Digite sus nombres");
@@ -53,6 +55,7 @@ public class RegistroSinReserva extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         c.setBackground(Color.DARK_GRAY);
+        c.add(etqNomb);
         c.add(etqNId);
         c.add(etqTId);
         c.add(etqNombre);
@@ -78,6 +81,10 @@ public class RegistroSinReserva extends JFrame{
         c.add(btnVol);
         
         
+        
+        etqNomb.setBounds(50, 20, 250, 25);
+        etqNomb.setFont(new Font("dialoge", 1, 26));
+        etqNomb.setForeground(Color.GREEN);
         etqNId.setBounds(50, 100, 200, 25);
         etqNId.setForeground(Color.white);
         etqTId.setBounds(50, 130, 200, 25);
@@ -117,7 +124,7 @@ public class RegistroSinReserva extends JFrame{
         textDir.setBounds(300,310,150,25);
         textTlfijo.setBounds(300,340,150,25);
         textTlcel.setBounds(300,370,150,25);
-        btnEnv.setBounds(250, 400, 100, 50);
+        btnEnv.setBounds(250, 470, 100, 50);
         btnEnv.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
         btnEnvActionPerformed(evt);
@@ -129,7 +136,7 @@ public class RegistroSinReserva extends JFrame{
                 btnDisActionPerformed(evt);
             }
         });
-        btnVol.setBounds(50, 400, 100, 35);
+        btnVol.setBounds(50, 470, 100, 35);
         btnVol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolActionPerformed(evt);

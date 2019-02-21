@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -14,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -23,7 +25,12 @@ public class HabitacionesDisponibles extends JFrame{
     JTable tblHabDis = new JTable();
     JScrollPane scHabDis = new JScrollPane(tblHabDis);
     JLabel etqDis = new JLabel("Las habitaciones disponibles son: ");
+    JLabel etqFec = new JLabel("Fecha");
+    JLabel etqNoc = new JLabel("Cantidad de noches");
     JButton btnVol = new JButton("VOLVER");
+    JDateChooser jdc = new JDateChooser();
+    JTextField txtNoc = new JTextField();
+    JButton btnCon = new JButton("CONSULTAR");
 
     public HabitacionesDisponibles(){
         Container c = getContentPane();
@@ -35,8 +42,22 @@ public class HabitacionesDisponibles extends JFrame{
         c.add(etqDis);
         c.add(scHabDis);
         c.add(btnVol);
+        c.add(etqFec);
+        c.add(etqNoc);
+        c.add(jdc);
+        c.add(txtNoc);
+        c.add(btnCon);
         
-        etqDis.setBounds(50, 20, 350, 50);
+        etqFec.setBounds(50, 20, 90, 35);
+        etqFec.setFont(new Font("dialog", 1, 16));
+        etqFec.setForeground(Color.WHITE);
+        etqNoc.setBounds(350, 20, 220, 35);
+        etqNoc.setFont(new Font("dialog", 1, 16));
+        etqNoc.setForeground(Color.WHITE);
+        txtNoc.setBounds(350, 60, 90, 25);
+        jdc.setBounds(50, 60, 150, 25);
+        btnCon.setBounds(150, 120, 150, 50);
+        etqDis.setBounds(50, 220, 350, 35);
         etqDis.setFont(new Font("dialoge", 1, 20));
         etqDis.setForeground(Color.WHITE);
         tblHabDis.setModel(new javax.swing.table.DefaultTableModel(
@@ -50,8 +71,8 @@ public class HabitacionesDisponibles extends JFrame{
                 "Número", "Tipo", "Capacidad", "Estado"
             }
         ));
-        scHabDis.setBounds(100, 100, 400, 200);
-        btnVol.setBounds(250, 370, 100, 50);
+        scHabDis.setBounds(50, 290, 400, 200);
+        btnVol.setBounds(250, 540, 100, 50);
         btnVol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolActionPerformed(evt);
@@ -60,7 +81,7 @@ public class HabitacionesDisponibles extends JFrame{
         
         
         setVisible(true);
-        setSize(550,500);
+        setSize(550,700);
     }
     public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
         setVisible(false);       
