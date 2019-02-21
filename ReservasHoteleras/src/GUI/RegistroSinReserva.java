@@ -79,17 +79,27 @@ public class RegistroSinReserva extends JFrame{
         
         
         etqNId.setBounds(50, 100, 200, 25);
+        etqNId.setForeground(Color.white);
         etqTId.setBounds(50, 130, 200, 25);
+        etqTId.setForeground(Color.white);
         etqNombre.setBounds(50, 160, 200, 25);
+        etqNombre.setForeground(Color.white);
         etqApellido.setBounds(50, 190, 200, 25);
+        etqApellido.setForeground(Color.white);
         etqPais.setBounds(50, 220, 200, 25);
+        etqPais.setForeground(Color.white);
         etqCiudad.setBounds(50, 250, 200, 25);
+        etqCiudad.setForeground(Color.white);
         etqBarrio.setBounds(50, 280, 200, 25);
+        etqBarrio.setForeground(Color.white);
         etqDir.setBounds(50, 310, 200, 25);
+        etqDir.setForeground(Color.white);
         etqTlfijo.setBounds(50, 340, 200, 25);
+        etqTlfijo.setForeground(Color.white);
         etqTlcel.setBounds(50, 370, 250, 25);
+        etqTlcel.setForeground(Color.white);
         textNId.setBounds(300,100,150,25);
-        cbTId.setBounds(300, 130, 200, 25);
+        cbTId.setBounds(300, 130, 170, 25);
         cbTId.addItem("Cedula de ciudadania");
         cbTId.addItem("Tarjeta de identidad");
         cbTId.addItem("Pasaporte");
@@ -107,13 +117,18 @@ public class RegistroSinReserva extends JFrame{
         textDir.setBounds(300,310,150,25);
         textTlfijo.setBounds(300,340,150,25);
         textTlcel.setBounds(300,370,150,25);
-        btnEnv.setBounds(250, 400, 250, 35);
+        btnEnv.setBounds(250, 400, 100, 50);
         btnEnv.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
         btnEnvActionPerformed(evt);
         }
         });
         btnDis.setBounds(50, 50, 250, 35);
+        btnDis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisActionPerformed(evt);
+            }
+        });
         btnVol.setBounds(50, 400, 100, 35);
         btnVol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +138,7 @@ public class RegistroSinReserva extends JFrame{
         
         
        
-        btnEnv.setEnabled(true);
+        btnEnv.setEnabled(false);
         setVisible(true);
         setSize(600,600);
         
@@ -184,8 +199,13 @@ public class RegistroSinReserva extends JFrame{
     }
      
     public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
-        Menu m = new Menu();
+        Pregunta p = new Pregunta();
         setVisible(false);       
+    }
+    public void btnDisActionPerformed(java.awt.event.ActionEvent evt) { 
+        HabitacionesDisponibles hd = new HabitacionesDisponibles();
+        btnEnv.setEnabled(true);
+        
     }
    
     

@@ -58,7 +58,7 @@ public class Menu extends JFrame{
             }
         });
         c.add(checkin);
-        checkin.setBounds(200,80,100,100);
+        checkin.setBounds(230,80,100,100);
         c.add(checkout);
         checkin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,7 +72,7 @@ public class Menu extends JFrame{
             }
         });
         c.add(pedirProd);
-        pedirProd.setBounds(200,230,100,100); 
+        pedirProd.setBounds(230,230,100,100); 
         setVisible(true);
         setSize(440,420);
                 

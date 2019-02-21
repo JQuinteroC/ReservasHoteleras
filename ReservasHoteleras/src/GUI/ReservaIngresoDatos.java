@@ -20,7 +20,7 @@ import javax.swing.JTextField;
  *
  * @author david
  */
-public class ReservaIngresar extends JFrame{
+public class ReservaIngresoDatos extends JFrame{
     JLabel etqPrin = new JLabel("Registro de datos");
     JLabel etqNId = new JLabel("Digite el numero de identificacion");
     JLabel etqTId = new JLabel("Digite el tipo de documento");
@@ -46,10 +46,10 @@ public class ReservaIngresar extends JFrame{
     JComboBox<String> cbTId = new JComboBox<String>();
     JButton btnReg = new JButton("REGISTRAR");
 
-    public ReservaIngresar(){
+    public ReservaIngresoDatos(){
         Container c = getContentPane();
         c.setLayout(null);
-        this.setTitle("Registro persona con reserva");
+        this.setTitle("Registro de datos a la persona con reserva");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         c.setBackground(Color.DARK_GRAY);
@@ -79,19 +79,32 @@ public class ReservaIngresar extends JFrame{
         c.add(btnReg);        
         
         etqPrin.setFont(new Font("dialog", 1, 24));
+        etqPrin.setForeground(Color.white);
         etqPrin.setBounds(25, 50, 300, 25);
+        etqNId.setForeground(Color.white);
         etqNId.setBounds(50, 100, 200, 25);
+        etqTId.setForeground(Color.white);
         etqTId.setBounds(50, 130, 200, 25);
         etqNombre.setBounds(50, 160, 200, 25);
+        etqNombre.setForeground(Color.white);
         etqApellido.setBounds(50, 190, 200, 25);
+        etqApellido.setForeground(Color.white);
         etqPais.setBounds(50, 220, 200, 25);
+        etqPais.setForeground(Color.white);
         etqCiudad.setBounds(50, 250, 200, 25);
+        etqCiudad.setForeground(Color.white);
         etqBarrio.setBounds(50, 280, 200, 25);
+        etqBarrio.setForeground(Color.white);
         etqDir.setBounds(50, 310, 200, 25);
+        etqDir.setForeground(Color.white);
         etqTlfijo.setBounds(50, 340, 200, 25);
+        etqTlfijo.setForeground(Color.white);
         etqTlcel.setBounds(50, 370, 250, 25);
+        etqTlcel.setForeground(Color.white);
         etqNRes.setBounds(50, 400, 250, 25);
+        etqNRes.setForeground(Color.white);
         etqNumRes.setBounds(300, 400, 250, 25);
+        etqNumRes.setForeground(Color.white);
         textNId.setBounds(300,100,150,25);
         cbTId.setBounds(300, 130, 200, 25);
         cbTId.addItem("Cedula de ciudadania");

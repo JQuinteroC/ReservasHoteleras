@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,20 +33,22 @@ public class Pregunta extends JFrame{
         c.add(btnSi);
         c.add(btnNo);
         c.add(btnVol);
-        preg.setBounds(80, 15, 200, 35);
-        btnSi.setBounds(80, 50, 90, 25);
+        preg.setBounds(20, 15, 300, 35);
+        preg.setFont(new Font("dialog", 1, 24));
+        preg.setForeground(Color.white);
+        btnSi.setBounds(80, 70, 90, 25);
         btnSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiActionPerformed(evt);
             }
         });
-        btnNo.setBounds(80, 90, 90, 25);
+        btnNo.setBounds(80, 110, 90, 25);
         btnNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNoActionPerformed(evt);
             }
         });
-        btnVol.setBounds(80, 130, 100, 25);
+        btnVol.setBounds(80, 160, 100, 25);
         btnVol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolActionPerformed(evt);

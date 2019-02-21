@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.HeadlessException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,8 +36,10 @@ public class RegistroConReserva extends JFrame{
         c.add(btnReg);
         c.add(btnVol);
         
-        etqDig.setBounds(50, 50, 240, 35);
-        txtNumRes.setBounds(330, 50, 150, 35);
+        etqDig.setBounds(50, 50, 300, 35);
+        etqDig.setFont(new Font("dialog", 1, 16));
+        etqDig.setForeground(Color.white);
+        txtNumRes.setBounds(390, 50, 150, 35);
         btnReg.setBounds(50, 130, 150, 35);
         btnVol.setBounds(250, 130, 150, 35);
         btnVol.addActionListener(new java.awt.event.ActionListener() {
@@ -46,7 +49,7 @@ public class RegistroConReserva extends JFrame{
         });
         
         setVisible(true);
-        setSize(525,280);        
+        setSize(600,280);        
     }
     public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
         Pregunta p = new Pregunta();
