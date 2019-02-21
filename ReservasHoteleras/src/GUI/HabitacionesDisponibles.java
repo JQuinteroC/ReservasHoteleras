@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import LOGIC.FormatoCalendar;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Container;
@@ -22,6 +23,7 @@ import javax.swing.JTextField;
  * @author david
  */
 public class HabitacionesDisponibles extends JFrame{
+    FormatoCalendar f = new FormatoCalendar();
     JTable tblHabDis = new JTable();
     JScrollPane scHabDis = new JScrollPane(tblHabDis);
     JLabel etqDis = new JLabel("Las habitaciones disponibles son: ");
@@ -30,6 +32,7 @@ public class HabitacionesDisponibles extends JFrame{
     JButton btnVol = new JButton("VOLVER");
     JDateChooser jdc = new JDateChooser();
     JTextField txtNoc = new JTextField();
+    JTextField txtObtDate = new JTextField();
     JButton btnCon = new JButton("CONSULTAR");
 
     public HabitacionesDisponibles(){
@@ -46,6 +49,7 @@ public class HabitacionesDisponibles extends JFrame{
         c.add(etqNoc);
         c.add(jdc);
         c.add(txtNoc);
+        c.add(txtObtDate);
         c.add(btnCon);
         
         etqFec.setBounds(50, 20, 90, 35);
@@ -57,6 +61,11 @@ public class HabitacionesDisponibles extends JFrame{
         txtNoc.setBounds(350, 60, 90, 25);
         jdc.setBounds(50, 60, 150, 25);
         btnCon.setBounds(150, 120, 150, 50);
+        btnCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConActionPerformed(evt);
+            }
+        });
         etqDis.setBounds(50, 220, 350, 35);
         etqDis.setFont(new Font("dialoge", 1, 20));
         etqDis.setForeground(Color.WHITE);
@@ -85,6 +94,9 @@ public class HabitacionesDisponibles extends JFrame{
     }
     public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
         setVisible(false);       
+    }
+    public void btnConActionPerformed(java.awt.event.ActionEvent evt) {
+        txtObtDate.setText(f.getFecha(jdc));        
     }
     
     
