@@ -1,5 +1,4 @@
-# ReservasHoteleras
-
+﻿# ReservasHoteleras
 ## Codigo en Java
 Se utililza la libreria JCalendar 
 * Enlace para descargar la libreria JCalendar:
@@ -10,5 +9,3 @@ Para cuando se genera el error al no tener la libreria, después de haber descar
 se tiene que dar clic derecho al proyecto --> resolve problems, add new Library y agregar donde se haya descargado la libreria el 
 
 JCalendar.jar 
-
- 
