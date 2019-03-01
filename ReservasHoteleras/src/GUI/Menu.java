@@ -91,7 +91,7 @@ public class Menu extends JFrame{
         setVisible(false);       
     }
     public void resActionPerformed(java.awt.event.ActionEvent evt) { 
-        Reserva r = new Reserva();
+        ReservaIngresoDatos rig = new ReservaIngresoDatos();
         setVisible(false);       
     }
     public void pedirProdActionPerformed(java.awt.event.ActionEvent evt) { 
