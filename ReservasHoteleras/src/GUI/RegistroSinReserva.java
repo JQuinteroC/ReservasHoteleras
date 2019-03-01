@@ -4,15 +4,20 @@
  * and open the template in the editor.
  */
 package GUI;
+import DATA.DAOPersona;
+import DATA.DAOPersonaImpl;
 import LOGIC.Persona;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
 
 /**
  *
@@ -156,23 +161,25 @@ public class RegistroSinReserva extends JFrame{
     public void cbTIdActionPerformed(java.awt.event.ActionEvent evt) {
         
         if ("Cedula de ciudadania".equals(cbTId.getSelectedItem().toString())){
-        p.tipo_doc="CC";//envio la cadena de caracteres al aributo en la calse persona
-        System.out.println("TIPO:"+p.tipo_doc);
+        p.setTipo_doc("CC");//envio la cadena de caracteres al aributo en la clase persona
+        System.out.println("TIPO:"+p.getTipo_doc());
         }
         
         else {
             if ("Tarjeta de identidad".equals(cbTId.getSelectedItem().toString())){
-             p.tipo_doc="TI";//envio la cadena de caracteres al aributo en la clase persona
-             System.out.println("TIPO:"+p.tipo_doc);
+             p.setTipo_doc("TI");//envio la cadena de caracteres al aributo en la clase persona
+             System.out.println("TIPO:"+p.getTipo_doc());
         }
             else{
-             p.tipo_doc="PP";//envio la cadena de caracteres al aributo en la calse persona
-             System.out.println("TIPO:"+p.tipo_doc);
+             p.setTipo_doc("PP");//envio la cadena de caracteres al aributo en la clase persona
+             System.out.println("TIPO:"+p.getTipo_doc());
             }
             
         } 
     }
+    //acciones del botón enviar
      public void btnEnvActionPerformed(java.awt.event.ActionEvent evt1) {
+        DAOPersona dao = new DAOPersonaImpl();//se cera uan instancia de la clase que controla la bd
         int numdocu = Integer.parseInt(textNId.getText());
         p.setDocumento(numdocu);
         System.out.println("Doc en persona: "+p.getDocumento());
@@ -191,18 +198,23 @@ public class RegistroSinReserva extends JFrame{
         p.setTelmovil(lg2);
         System.out.println("Movil en persona: "+p.getTelmovil());
         
-        p.barrio=textBarrio.getText();
-        System.out.println("barrio en persona: "+p.barrio);
+        p.setBarrio(textBarrio.getText());
+        System.out.println("barrio en persona: "+p.getBarrio());
         
-        p.pais=textPais.getText();
-        System.out.println("Pais en persona: "+p.pais);
+        p.setPais(textPais.getText());
+        System.out.println("Pais en persona: "+p.getPais());
         
-        p.ciudad=textCiudad.getText();
-        System.out.println("Ciudad en persona: "+p.ciudad);
+        p.setCiudad(textCiudad.getText());
+        System.out.println("Ciudad en persona: "+p.getCiudad());
         
-       p.direccion=textDir.getText();
-        System.out.println("Direccion en persona: "+p.direccion);
-        
+       p.setDireccion(textDir.getText());
+        System.out.println("Direccion en persona: "+p.getDireccion());
+        try {
+            dao.resgistrar(p);//se llama al metodo registrar y se le envia la persona con todos sus atributos
+  
+        } catch (Exception ex) {
+            System.out.println("ERROR!!!:  "+ex.getMessage());
+        }
     }
      
     public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
