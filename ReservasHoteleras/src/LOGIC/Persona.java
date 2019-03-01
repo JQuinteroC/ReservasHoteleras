@@ -123,13 +123,13 @@ public class Persona {
         this.tipo_doc = tipo_doc;
     }
 
-    public Date getF_nacimiento() {
-        return f_nacimiento;
-    }
-
-    public void setF_nacimiento(Date f_nacimiento) {
-        this.f_nacimiento = f_nacimiento;
-    }
+//    public Date getF_nacimiento() {
+//        return f_nacimiento;
+//    }
+//
+//    public void setF_nacimiento(Date f_nacimiento) {
+//        this.f_nacimiento = f_nacimiento;
+//    }
 
  
 }

@@ -13,28 +13,26 @@ import javax.swing.JOptionPane;
  */
 public class Conection {
 
-  Connection conexion;
-private  String user = "troll";//esquema de la bd
-private  String pass = "troll";//clave del esquema
-private  String url = "jdbc:oracle:thin:@localhost:1521:xe";
-public Connection conectar () throws SQLException, ClassNotFoundException{
-    try{
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-        conexion = DriverManager.getConnection(url, user, pass);
-        conexion.setAutoCommit(false);
-        if(conexion != null){
-            System.out.println("Conexion Exitosa");
-        }else{
-            System.out.println("Conexion Fallida!!");
-        }
-        
-    }catch(ClassNotFoundException | SQLException e){
-        JOptionPane.showMessageDialog(null, "CONEXION FALLIDA!"+e.getMessage());
-    }
-    
-    return conexion;
+    Connection conexion;
+    private  String user = "hotel";//esquema de la bd
+    private  String pass = "1234";//clave del esquema
+    private  String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    public Connection conectar () throws SQLException, ClassNotFoundException{
+        try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conexion = DriverManager.getConnection(url, user, pass);
+            conexion.setAutoCommit(false);
+            if(conexion != null){
+                System.out.println("Conexion Exitosa");
+            }else{
+                System.out.println("Conexion Fallida!!");
+            }
 
-  }  
+        }catch(ClassNotFoundException | SQLException e){
+            JOptionPane.showMessageDialog(null, "CONEXION FALLIDA!"+e.getMessage());
+        }    
+    return conexion;
+    }  
    
  public void desconexion(){
      try{
