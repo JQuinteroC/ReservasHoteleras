@@ -5,9 +5,6 @@
  */
 package GUI;
 
-import DATA.DAOPersona;
-import DATA.DAOPersonaImpl;
-import LOGIC.Persona;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -15,14 +12,14 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
  *
  * @author david
  */
-public class ReservaIngresoDatos extends JFrame{
-    Persona p = new Persona();
+public class RegistroAcompañantes extends JFrame{
     JLabel etqNomb = new JLabel("Registro de datos");
     JLabel etqDig = new JLabel("Digite");
     JLabel etqNId = new JLabel("El numero de identificacion");
@@ -35,10 +32,9 @@ public class ReservaIngresoDatos extends JFrame{
     JLabel etqDir = new JLabel("La direccion");
     JLabel etqTlfijo = new JLabel("El numero del telefono fijo");
     JLabel etqTlcel = new JLabel("El numero del telefono celular");
+    JLabel etqFNac = new JLabel("La fecha de nacimiento");
     JLabel etqNumHab = new JLabel("Numero de la habitacion disponible");
     JLabel etqNoches = new JLabel("La cantidad de noches");
-    JLabel etqCanPer = new JLabel("La cantidad de personas");
-    
     JTextField textNId = new JTextField();
     JTextField textNombre = new JTextField();
     JTextField textApellido = new JTextField();
@@ -48,21 +44,22 @@ public class ReservaIngresoDatos extends JFrame{
     JTextField textDir = new JTextField();
     JTextField textTlfijo = new JTextField();
     JTextField textTlcel = new JTextField();
+    JTextField textFNac = new JTextField();
     JTextField textNumHab = new JTextField();
     JTextField textNoches = new JTextField();
-    JTextField textCanPer = new JTextField();
-    JButton btnRes = new JButton("RESERVAR");
+    JButton btnHue = new JButton("SIGUIENTE HUESPED");
     JButton btnVol = new JButton("VOLVER");
-    JButton btnDis = new JButton("Consultar disponibilidad");
+    JButton btnTer = new JButton("TERMINAR");
+    
     
     
     JComboBox<String> cbTId = new JComboBox<String>();
     
-    public ReservaIngresoDatos() {
+    public RegistroAcompañantes() {
             
         Container c = getContentPane();
         c.setLayout(null);
-        this.setTitle("Registro en reserva");
+        this.setTitle("Registro sin reserva");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         c.setBackground(Color.DARK_GRAY);
@@ -78,7 +75,7 @@ public class ReservaIngresoDatos extends JFrame{
         c.add(etqDir);
         c.add(etqTlfijo);
         c.add(etqTlcel);
-        c.add(etqCanPer);
+        c.add(etqFNac);
         c.add(etqNumHab);
         c.add(etqNoches);
         c.add(textNId);
@@ -91,11 +88,11 @@ public class ReservaIngresoDatos extends JFrame{
         c.add(textDir);
         c.add(textTlfijo);
         c.add(textTlcel);
-        c.add(textCanPer);
+        c.add(textFNac);
         c.add(textNumHab);
         c.add(textNoches);
-        c.add(btnDis);
-        c.add(btnRes);
+        c.add(btnHue);
+        c.add(btnTer);
         c.add(btnVol);
         
         
@@ -136,9 +133,9 @@ public class ReservaIngresoDatos extends JFrame{
         etqTlcel.setBounds(50, 470, 300, 25);
         etqTlcel.setForeground(Color.white);
         etqTlcel.setFont(new Font("Montserrat", 1, 14));
-        etqCanPer.setBounds(50, 500, 250, 25);
-        etqCanPer.setForeground(Color.white);
-        etqCanPer.setFont(new Font("Montserrat", 1, 14));
+        etqFNac.setBounds(50, 500, 250, 25);
+        etqFNac.setForeground(Color.white);
+        etqFNac.setFont(new Font("Montserrat", 1, 14));
         etqNumHab.setBounds(50, 530, 300, 25);
         etqNumHab.setForeground(Color.white);
         etqNumHab.setFont(new Font("Montserrat", 1, 14));
@@ -192,10 +189,10 @@ public class ReservaIngresoDatos extends JFrame{
         textTlcel.setBackground(new Color(0,51,51));
         textTlcel.setForeground(Color.white);
         textTlcel.setFont(new Font("Montserrat", 1, 14));
-        textCanPer.setBounds(400,500,150,25);
-        textCanPer.setBackground(new Color(0,51,51));
-        textCanPer.setForeground(Color.white);
-        textCanPer.setFont(new Font("Montserrat", 1, 14));
+        textFNac.setBounds(400,500,150,25);
+        textFNac.setBackground(new Color(0,51,51));
+        textFNac.setForeground(Color.white);
+        textFNac.setFont(new Font("Montserrat", 1, 14));
         textNumHab.setBounds(400,530,150,25);
         textNumHab.setBackground(new Color(0,51,51));
         textNumHab.setForeground(Color.white);
@@ -204,22 +201,22 @@ public class ReservaIngresoDatos extends JFrame{
         textNoches.setBackground(new Color(0,51,51));
         textNoches.setForeground(Color.white);
         textNoches.setFont(new Font("Montserrat", 1, 14));
-        btnRes.setBounds(250, 650, 100, 50);
-        btnRes.addActionListener(new java.awt.event.ActionListener() {
+        btnHue.setBounds(250, 650, 200, 50);
+        btnHue.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnResActionPerformed(evt);
+        btnHueActionPerformed(evt);
         }
-        });
-        btnDis.setBounds(50, 70, 250, 35);
-        btnDis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDisActionPerformed(evt);
-            }
         });
         btnVol.setBounds(50, 650, 100, 35);
         btnVol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolActionPerformed(evt);
+            }
+        });
+        btnTer.setBounds(470, 650, 100, 35);
+        btnTer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTerActionPerformed(evt);
             }
         });
         setVisible(true);
@@ -230,6 +227,7 @@ public class ReservaIngresoDatos extends JFrame{
     
     //Es el actionPerfomed para enviar el tipo de documento
     public void cbTIdActionPerformed(java.awt.event.ActionEvent evt) {
+        /*
         
         if ("Cedula de ciudadania".equals(cbTId.getSelectedItem().toString())){
         p.setTipo_doc("CC");//envio la cadena de caracteres al aributo en la clase persona
@@ -246,10 +244,12 @@ public class ReservaIngresoDatos extends JFrame{
              System.out.println("TIPO:"+p.getTipo_doc());
             }
             
-        } 
+        } */
     }
     //acciones del botón enviar
-     public void btnResActionPerformed(java.awt.event.ActionEvent evt1) {
+     public void btnHueActionPerformed(java.awt.event.ActionEvent evt1) {
+         
+         /*
         DAOPersona dao = new DAOPersonaImpl();//se cera uan instancia de la clase que controla la bd
         int numdocu = Integer.parseInt(textNId.getText());
         p.setDocumento(numdocu);
@@ -278,27 +278,26 @@ public class ReservaIngresoDatos extends JFrame{
         p.setCiudad(textCiudad.getText());
         System.out.println("Ciudad en persona: "+p.getCiudad());
         
-       p.setDireccion(textDir.getText());
+        p.setDireccion(textDir.getText());
         System.out.println("Direccion en persona: "+p.getDireccion());
         try {
             dao.resgistrar(p);//se llama al metodo registrar y se le envia la persona con todos sus atributos
   
         } catch (Exception ex) {
             System.out.println("ERROR!!!:  "+ex.getMessage());
-        }
+        }*/
+        RegistroAcompañantes ra = new RegistroAcompañantes();
+        setVisible(false);
     }
      
     public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
-        Menu m = new Menu();
+        Pregunta p = new Pregunta();
         setVisible(false);       
     }
-    public void btnDisActionPerformed(java.awt.event.ActionEvent evt) { 
-        HabitacionesDisponibles hd = new HabitacionesDisponibles();
-        btnRes.setEnabled(true);
-        
+    public void btnTerActionPerformed(java.awt.event.ActionEvent evt) {
+        JOptionPane.showMessageDialog(null, "Registro exitoso!");
+        Pregunta p = new Pregunta();
+        setVisible(false);       
     }
-   
-    
-    
     
 }

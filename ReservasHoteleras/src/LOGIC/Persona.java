@@ -24,7 +24,6 @@ public class Persona {
     private String direccion;
     private String pais;
     private String tipo_doc;
-    private Date f_nacimiento;
     
     
 //método constructor    
@@ -39,7 +38,6 @@ public class Persona {
         direccion="";
         pais="";
         tipo_doc="";
-        f_nacimiento = new Date(0);
     }
     
     //Métodos accesores
@@ -121,15 +119,5 @@ public class Persona {
 
     public void setTipo_doc(String tipo_doc) {
         this.tipo_doc = tipo_doc;
-    }
-
-//    public Date getF_nacimiento() {
-//        return f_nacimiento;
-//    }
-//
-//    public void setF_nacimiento(Date f_nacimiento) {
-//        this.f_nacimiento = f_nacimiento;
-//    }
-
- 
+    }  
 }

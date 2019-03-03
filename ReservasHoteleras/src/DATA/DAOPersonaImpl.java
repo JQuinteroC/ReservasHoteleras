@@ -44,6 +44,8 @@ public class DAOPersonaImpl extends Conection implements DAOPersona {
             st.setString(10, per.getDireccion());
             
             st.executeUpdate();//guarda los cambios
+            st.close();
+            this.conexion.commit();            
         } catch (Exception e) {
             throw e;
         }finally{
