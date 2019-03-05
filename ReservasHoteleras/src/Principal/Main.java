@@ -5,11 +5,11 @@
  */
 package Principal;
 
-import DATA.Conection;
+import DATA.Conexion;
 import DATA.DAOPersona;
-import DATA.DAOPersonaImpl;
 import GUI.Menu;
 import java.sql.SQLException;
+import DATA.DAO;
 
 /**
  *

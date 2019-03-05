@@ -12,21 +12,70 @@ import java.sql.Date;
  * @author estudiantes
  */
 public class Reserva {
-    
+
     private int id_reserva;
     private Date f_inicio;
     private Date f_reserva;
     private int dias;
+    private int ocupantes;
     String estado;
 //método constructor
-Reserva(){
-    f_inicio = new Date(0);
-    f_reserva = new Date(0);
-    id_reserva=0;
-    estado="";
-    dias=0;
-}
 
-    
-    
+    Reserva() {
+        f_inicio = new Date(0);
+        f_reserva = new Date(0);
+        id_reserva = 0;
+        estado = "";
+        dias = 0;
+        ocupantes = 0;
+    }
+
+    public int getId_reserva() {
+        return id_reserva;
+    }
+
+    public void setId_reserva(int id_reserva) {
+        this.id_reserva = id_reserva;
+    }
+
+    public Date getF_inicio() {
+        return f_inicio;
+    }
+
+    public void setF_inicio(Date f_inicio) {
+        this.f_inicio = f_inicio;
+    }
+
+    public Date getF_reserva() {
+        return f_reserva;
+    }
+
+    public void setF_reserva(Date f_reserva) {
+        this.f_reserva = f_reserva;
+    }
+
+    public int getDias() {
+        return dias;
+    }
+
+    public void setDias(int dias) {
+        this.dias = dias;
+    }
+
+    public int getOcupantes() {
+        return ocupantes;
+    }
+
+    public void setOcupantes(int ocupantes) {
+        this.ocupantes = ocupantes;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
 }

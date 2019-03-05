@@ -10,16 +10,38 @@ package LOGIC;
  * @author estudiantes
  */
 public class Habitacion {
+
     private int n_hab;
-    public String estado;
-    public String tipo_hab;
-    public double precio_noche;
-    public int capacidad;
-    Habitacion(){
-        n_hab=0;
-        estado="";
-        tipo_hab="";
-        precio_noche=0;
-        capacidad=0;
+    private String estado;
+    private TipoHab tipo;
+
+    Habitacion() {
+        n_hab = 0;
+        estado = "";
     }
+
+    public TipoHab getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoHab tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getN_hab() {
+        return n_hab;
+    }
+
+    public void setN_hab(int n_hab) {
+        this.n_hab = n_hab;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
 }

@@ -10,20 +10,71 @@ package LOGIC;
  * @author estudiantes
  */
 public class Producto_Servicio {
+
     //Declaración de variables 
-    public String descripcion;
+    private String descripcion;
     private int id_producto;
-    public String nombre;
-    public String tipo;
-    public double precio_unidad;
-    
- //Método constructor
-    Producto_Servicio(){
-        descripcion="";
-        id_producto=0;
-        nombre="";
-        tipo="";
-        precio_unidad=0;      
+    private String nombre;
+    private String tipo;
+    private double precio_unidad;
+    private int existencias;
+
+    //Método constructor
+    Producto_Servicio() {
+        descripcion = "";
+        id_producto = 0;
+        nombre = "";
+        tipo = "";
+        precio_unidad = 0;
+        existencias = 0;
     }
-    
+
+    public int getExistencias() {
+        return existencias;
+    }
+
+    public void setExistencias(int existencias) {
+        this.existencias = existencias;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getId_producto() {
+        return id_producto;
+    }
+
+    public void setId_producto(int id_producto) {
+        this.id_producto = id_producto;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public double getPrecio_unidad() {
+        return precio_unidad;
+    }
+
+    public void setPrecio_unidad(double precio_unidad) {
+        this.precio_unidad = precio_unidad;
+    }
+
 }
