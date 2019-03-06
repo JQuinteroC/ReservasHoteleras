@@ -22,8 +22,6 @@ public class Persona {
     private String direccion;
     private String pais;
     private String tipo_doc;
-    private boolean huesped;
-    private int edad;
 
 //método constructor    
     public Persona() {
@@ -37,8 +35,6 @@ public class Persona {
         direccion = "";
         pais = "";
         tipo_doc = "";
-        huesped = false;
-        edad = 0;
     }
 
     //Métodos accesores
@@ -48,14 +44,6 @@ public class Persona {
 
     public void setNombres(String nombres) {
         this.nombres = nombres;
-    }
-
-    public boolean isHuesped() {
-        return huesped;
-    }
-
-    public void setHuesped(boolean huesped) {
-        this.huesped = huesped;
     }
 
     public String getApellidos() {
@@ -68,14 +56,6 @@ public class Persona {
 
     public String getDocumento() {
         return documento;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 
     public void setDocumento(String documento) {

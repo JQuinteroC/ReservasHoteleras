@@ -12,13 +12,14 @@ import java.sql.Date;
  * @author david
  */
 public class Huesped {
+
     private Date f_nacimiento;
-    private int documento;
+    private String documento;
     private String tipo_doc;
 
     public Huesped() {
-        documento=0;
-        tipo_doc="";
+        documento = "";
+        tipo_doc = "";
         f_nacimiento = new Date(0);
     }
 
@@ -30,11 +31,11 @@ public class Huesped {
         this.f_nacimiento = f_nacimiento;
     }
 
-    public int getDocumento() {
+    public String getDocumento() {
         return documento;
     }
 
-    public void setDocumento(int documento) {
+    public void setDocumento(String documento) {
         this.documento = documento;
     }
 
@@ -45,7 +46,4 @@ public class Huesped {
     public void setTipo_doc(String tipo_doc) {
         this.tipo_doc = tipo_doc;
     }
-    
-    
-    
 }

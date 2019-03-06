@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import DATA.DAOPersona;
+import DATA.DAOHotel;
 import LOGIC.Persona;
 import java.awt.Color;
 import java.awt.Container;
@@ -15,7 +15,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import DATA.DAO;
 
 /**
  *
@@ -245,7 +244,7 @@ public class ReservaIngresoDatos extends JFrame {
 
     //acciones del botón enviar
     public void btnResActionPerformed(java.awt.event.ActionEvent evt1) {
-        DAOPersona dao = new DAOPersona();//se cera uan instancia de la clase que controla la bd
+        DAOHotel dao = new DAOHotel();//se cera uan instancia de la clase que controla la bd
         String numdocu = textNId.getText();
         p.setDocumento(numdocu);
         System.out.println("Doc en persona: " + p.getDocumento());
@@ -276,7 +275,7 @@ public class ReservaIngresoDatos extends JFrame {
         p.setDireccion(textDir.getText());
         System.out.println("Direccion en persona: " + p.getDireccion());
         try {
-            dao.resgistrar(p);//se llama al metodo registrar y se le envia la persona con todos sus atributos
+            dao.resgistrarPersona(p);//se llama al metodo registrar y se le envia la persona con todos sus atributos
 
         } catch (Exception ex) {
             System.out.println("ERROR!!!:  " + ex.getMessage());
