@@ -6,21 +6,21 @@
 package LOGIC;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
  * @author david
  */
-public class Huesped {
+public class Huesped extends Persona {
 
     private Date f_nacimiento;
-    private String documento;
-    private String tipo_doc;
+    private ArrayList<Registro> registros;
 
     public Huesped() {
-        documento = "";
-        tipo_doc = "";
+        super();
         f_nacimiento = new Date(0);
+        registros = new ArrayList<>();
     }
 
     public Date getF_nacimiento() {
@@ -31,19 +31,12 @@ public class Huesped {
         this.f_nacimiento = f_nacimiento;
     }
 
-    public String getDocumento() {
-        return documento;
+    public ArrayList<Registro> getRegistros() {
+        return registros;
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
+    public void setRegistros(ArrayList<Registro> registros) {
+        this.registros = registros;
     }
 
-    public String getTipo_doc() {
-        return tipo_doc;
-    }
-
-    public void setTipo_doc(String tipo_doc) {
-        this.tipo_doc = tipo_doc;
-    }
 }

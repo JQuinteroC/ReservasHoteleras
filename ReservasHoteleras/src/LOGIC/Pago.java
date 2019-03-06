@@ -19,6 +19,7 @@ public class Pago {
     public String medio_pago;
     public double valor;
     private String estado;
+    private Cuenta cuenta;
 
     //método constructor
     Pago() {
@@ -26,6 +27,7 @@ public class Pago {
         f_pago = new Date(0);
         medio_pago = "";
         valor = 0;
+        cuenta = new Cuenta();
     }
 
     //métodos accesores
@@ -43,6 +45,14 @@ public class Pago {
 
     public void setMedio_pago(String medio_pago) {
         this.medio_pago = medio_pago;
+    }
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
     }
 
     public double getValor() {

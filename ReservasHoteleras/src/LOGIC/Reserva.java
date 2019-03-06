@@ -18,16 +18,20 @@ public class Reserva {
     private Date f_reserva;
     private int dias;
     private int ocupantes;
-    String estado;
-//método constructor
+    private String estado;
+    private Persona persona;
+    private Habitacion habitacion;
 
-    Reserva() {
+    //método constructor
+    public Reserva() {
         f_inicio = new Date(0);
         f_reserva = new Date(0);
         id_reserva = 0;
         estado = "";
         dias = 0;
         ocupantes = 0;
+        persona = new Persona();
+        habitacion = new Habitacion();
     }
 
     public int getId_reserva() {
@@ -76,6 +80,22 @@ public class Reserva {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public Habitacion getHabitacion() {
+        return habitacion;
+    }
+
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
     }
 
 }

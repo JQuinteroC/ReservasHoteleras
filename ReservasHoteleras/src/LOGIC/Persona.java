@@ -12,16 +12,16 @@ package LOGIC;
 public class Persona {
     //RegistroSinReserva datos = new RegistroSinReserva();
 
-    private String nombres;
-    private String apellidos;
-    private String documento;
-    private long telfijo;
-    private long telmovil;
-    private String barrio;
-    private String ciudad;
-    private String direccion;
-    private String pais;
-    private String tipo_doc;
+    protected String nombres;
+    protected String apellidos;
+    protected String documento;
+    protected long telfijo;
+    protected long telmovil;
+    protected String barrio;
+    protected String ciudad;
+    protected String direccion;
+    protected String pais;
+    protected String tipo_doc;
 
 //método constructor    
     public Persona() {

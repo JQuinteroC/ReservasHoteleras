@@ -19,7 +19,7 @@ public class Registro {
     private String estado;
     private Date f_ingreso;
     private Date f_salida;
-    private ArrayList<Persona> ocupantes;
+    private ArrayList<Huesped> ocupantes;
 
     //Método constructor e inicialización de variables
     Registro() {
@@ -31,11 +31,11 @@ public class Registro {
     }
 
     //métodos accesores
-    public ArrayList<Persona> getOcupantes() {
+    public ArrayList<Huesped> getOcupantes() {
         return ocupantes;
     }
 
-    public void setOcupantes(ArrayList<Persona> ocupantes) {
+    public void setOcupantes(ArrayList<Huesped> ocupantes) {
         this.ocupantes = ocupantes;
     }
 

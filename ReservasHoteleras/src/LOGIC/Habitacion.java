@@ -12,12 +12,10 @@ package LOGIC;
 public class Habitacion {
 
     private int n_hab;
-    private String estado;
     private TipoHab tipo;
 
-    Habitacion() {
+    public Habitacion() {
         n_hab = 0;
-        estado = "";
     }
 
     public TipoHab getTipo() {
@@ -35,13 +33,4 @@ public class Habitacion {
     public void setN_hab(int n_hab) {
         this.n_hab = n_hab;
     }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
 }
