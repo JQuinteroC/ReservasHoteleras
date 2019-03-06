@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  *
- * @author
+ * @author J
  */
 public class DAOHabitacion implements DAO<Habitacion> {
 
@@ -57,8 +57,8 @@ public class DAOHabitacion implements DAO<Habitacion> {
     public List<Habitacion> recuperarTodos() throws Exception {
         List<Habitacion> lista = new ArrayList<>();
         try {
-            PreparedStatement st = conexion.getConexion().prepareStatement("SELECT H.K_NUMERO, TH.K_IDTIPO, TH.V_NOCHE, TH.Q_CAPACIDAD FROM Tipo_Habitacion TH, Habitacion H WHERE H.K_IDTIPO = TH.K_IDTIPO");
-            lista = new ArrayList();
+            PreparedStatement st = conexion.getConexion().prepareStatement("SELECT H.K_NUMERO, TH.K_IDTIPO, TH.V_NOCHE, "
+                    + "TH.Q_CAPACIDAD FROM Tipo_Habitacion TH, Habitacion H WHERE H.K_IDTIPO = TH.K_IDTIPO");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Habitacion p = new Habitacion();

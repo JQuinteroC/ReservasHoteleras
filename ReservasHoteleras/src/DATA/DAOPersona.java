@@ -109,7 +109,6 @@ public class DAOPersona implements DAO<Persona> {
         List<Persona> lista = new ArrayList<>();
         try {
             PreparedStatement st = conexion.getConexion().prepareStatement("SELECT * FROM PERSONA");
-            lista = new ArrayList();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Persona p = new Persona();

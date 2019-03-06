@@ -5,9 +5,12 @@
  */
 package DATA;
 
+import LOGIC.Persona;
 import LOGIC.TipoHab;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,7 +56,25 @@ public class DAOTipoHab implements DAO<TipoHab> {
 
     @Override
     public List<TipoHab> recuperarTodos() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<TipoHab> lista = new ArrayList<>();
+        try {
+            PreparedStatement st = conexion.getConexion().prepareStatement("SELECT * FROM Tipo_Habitacion");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                TipoHab p = new TipoHab();
+                p.setIdTipHab(rs.getString("K_IDTIPO"));
+                p.setValorNoc(rs.getDouble("V_NOCHE"));
+                p.setCapacidad(rs.getInt("Q_CAPACIDAD"));
+                lista.add(p);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            conexion.desconexion();
+        }
+        return lista;
     }
 
 }

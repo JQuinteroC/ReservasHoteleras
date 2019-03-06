@@ -20,17 +20,37 @@ public class Registro {
     private Date f_ingreso;
     private Date f_salida;
     private ArrayList<Huesped> ocupantes;
+    private Reserva reserva;
+    private Habitacion habitacion;
 
     //Método constructor e inicialización de variables
-    Registro() {
+    public Registro() {
         id_registro = 0;
         estado = "";
         f_ingreso = new Date(0);
         f_salida = new Date(0);
         ocupantes = new ArrayList<>();
+        reserva = new Reserva();
+        habitacion = new Habitacion();
     }
 
     //métodos accesores
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
+
+    public Habitacion getHabitacion() {
+        return habitacion;
+    }
+
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
+    }
+
     public ArrayList<Huesped> getOcupantes() {
         return ocupantes;
     }
