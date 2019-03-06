@@ -9,7 +9,6 @@ import LOGIC.Habitacion;
 import LOGIC.Huesped;
 import LOGIC.Registro;
 import LOGIC.Reserva;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,6 +39,8 @@ public class DAORegistro implements DAO<Registro> {
             st.setString(4, t.getEstado());
             st.setInt(5, t.getReserva().getId_reserva());
             st.setInt(6, t.getHabitacion().getN_hab());
+            st.executeUpdate();//guarda los cambios
+            st.close();
 
             for (Huesped h : t.getOcupantes()) {
                 st = conexion.getConexion().prepareStatement("INSERT INTO Huesped_Registro (K_ID_REG, K_TIPO_DOC, "
@@ -49,10 +50,10 @@ public class DAORegistro implements DAO<Registro> {
                 st.setString(3, h.getDocumento());
                 st.setDate(4, t.getF_ingreso());
                 st.setDate(5, t.getF_salida());
-
+                st.executeUpdate();//guarda los cambios
+                st.close();
             }
-            st.executeUpdate();//guarda los cambios
-            st.close();
+
             conexion.commit();
         } catch (SQLException e) {
             throw e;

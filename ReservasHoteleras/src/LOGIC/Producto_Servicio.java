@@ -20,7 +20,7 @@ public class Producto_Servicio {
     private int existencias;
 
     //Método constructor
-    Producto_Servicio() {
+    public Producto_Servicio() {
         descripcion = "";
         id_producto = 0;
         nombre = "";

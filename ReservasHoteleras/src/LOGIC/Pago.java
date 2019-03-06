@@ -22,7 +22,7 @@ public class Pago {
     private Cuenta cuenta;
 
     //método constructor
-    Pago() {
+    public Pago() {
         id_pago = 0;
         f_pago = new Date(0);
         medio_pago = "";

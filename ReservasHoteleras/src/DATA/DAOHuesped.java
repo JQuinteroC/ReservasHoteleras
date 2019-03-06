@@ -7,6 +7,7 @@ package DATA;
 
 import LOGIC.Huesped;
 import LOGIC.Persona;
+import LOGIC.Registro;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -78,6 +79,9 @@ public class DAOHuesped implements DAO<Huesped> {
                         break;
                     }
                 }
+                ArrayList<Registro> registros = (ArrayList<Registro>) (new DAORegistro()).recuperarTodos();
+                PreparedStatement st2 = conexion.getConexion().prepareStatement("SELECT * FROM Huesped H, Huesped_Registro HR, Registro R WHERE H.");
+                ResultSet rs2 = st.executeQuery();
                 lista.add(h);
             }
             rs.close();
