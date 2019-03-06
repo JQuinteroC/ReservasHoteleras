@@ -9,8 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author Holligan
- * @param <T>
+ * @author @param <T>
  */
 public interface DAO<T> {
 

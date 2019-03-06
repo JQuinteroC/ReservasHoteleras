@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  *
- * @author Holligan
+ * @author
  */
 public class DAOHabitacion implements DAO<Habitacion> {
 
