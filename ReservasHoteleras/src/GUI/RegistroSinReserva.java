@@ -1,10 +1,16 @@
 package GUI;
 
+import DATA.DAOHuesped;
 import DATA.DAOPersona;
+import LOGIC.Habitacion;
+import LOGIC.Huesped;
 import LOGIC.Persona;
+import LOGIC.Registro;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.sql.Date;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -33,6 +39,9 @@ public class RegistroSinReserva extends JFrame {
     JLabel etqFNac = new JLabel("La fecha de nacimiento");
     JLabel etqNumHab = new JLabel("Numero de la habitacion disponible");
     JLabel etqNoches = new JLabel("La cantidad de noches");
+    JLabel etqFechaIni = new JLabel("Fecha de inicio");
+    JLabel etqFechaSal = new JLabel("Fecha de salida");
+    JLabel etqOcupantes = new JLabel("Numero de Ocupantes");
     JTextField textNId = new JTextField();
     JTextField textNombre = new JTextField();
     JTextField textApellido = new JTextField();
@@ -45,6 +54,10 @@ public class RegistroSinReserva extends JFrame {
     JTextField textFNac = new JTextField();
     JTextField textNumHab = new JTextField();
     JTextField textNoches = new JTextField();
+    JTextField textFechaSal = new JTextField();
+    JTextField textFechaIni = new JTextField();
+    JTextField textOcupantes = new JTextField();
+
     JButton btnEnv = new JButton("ENVIAR");
     JButton btnVol = new JButton("VOLVER");
     JButton btnDis = new JButton("Consultar disponibilidad");
@@ -90,6 +103,10 @@ public class RegistroSinReserva extends JFrame {
         c.add(btnDis);
         c.add(btnEnv);
         c.add(btnVol);
+        c.add(etqFechaIni);
+        c.add(etqFechaSal);
+        c.add(textFechaIni);
+        c.add(textFechaSal);
 
         etqNomb.setBounds(50, 20, 250, 30);
         etqNomb.setFont(new Font("Montserrat", 1, 26));
@@ -136,6 +153,15 @@ public class RegistroSinReserva extends JFrame {
         etqNoches.setBounds(50, 560, 250, 25);
         etqNoches.setForeground(Color.white);
         etqNoches.setFont(new Font("Montserrat", 1, 14));
+        etqFechaIni.setBounds(50, 590, 250, 25);
+        etqFechaIni.setForeground(Color.white);
+        etqFechaIni.setFont(new Font("Montserrat", 1, 14));
+        etqFechaSal.setBounds(50, 620, 250, 25);
+        etqFechaSal.setForeground(Color.white);
+        etqFechaSal.setFont(new Font("Montserrat", 1, 14));
+        etqOcupantes.setBounds(50, 650, 250, 25);
+        etqOcupantes.setForeground(Color.white);
+        etqOcupantes.setFont(new Font("Montserrat", 1, 14));
         textNId.setBounds(400, 200, 150, 25);
         textNId.setBackground(new Color(0, 51, 51));
         textNId.setForeground(Color.white);
@@ -195,7 +221,19 @@ public class RegistroSinReserva extends JFrame {
         textNoches.setBackground(new Color(0, 51, 51));
         textNoches.setForeground(Color.white);
         textNoches.setFont(new Font("Montserrat", 1, 14));
-        btnEnv.setBounds(250, 650, 100, 50);
+        textFechaIni.setBounds(400, 590, 150, 25);
+        textFechaIni.setBackground(new Color(0, 51, 51));
+        textFechaIni.setForeground(Color.white);
+        textFechaIni.setFont(new Font("Montserrat", 1, 14));
+        textFechaSal.setBounds(400, 620, 150, 25);
+        textFechaSal.setBackground(new Color(0, 51, 51));
+        textFechaSal.setForeground(Color.white);
+        textFechaSal.setFont(new Font("Montserrat", 1, 14));
+        textOcupantes.setBounds(400, 650, 150, 25);
+        textOcupantes.setBackground(new Color(0, 51, 51));
+        textOcupantes.setForeground(Color.white);
+        textOcupantes.setFont(new Font("Montserrat", 1, 14));
+        btnEnv.setBounds(250, 710, 100, 50);
         btnEnv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnvActionPerformed(evt);
@@ -207,7 +245,7 @@ public class RegistroSinReserva extends JFrame {
                 btnDisActionPerformed(evt);
             }
         });
-        btnVol.setBounds(50, 650, 100, 35);
+        btnVol.setBounds(50, 710, 100, 35);
         btnVol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolActionPerformed(evt);
@@ -272,6 +310,21 @@ public class RegistroSinReserva extends JFrame {
         System.out.println("Direccion en persona: " + p.getDireccion());
         try {
             dao.incluir(p);//se llama al metodo registrar y se le envia la persona con todos sus atributos
+            DAOHuesped daoH = new DAOHuesped();
+            Huesped hu = new Huesped();
+            hu.setDocumento(p.getDocumento());
+            hu.setF_nacimiento(java.sql.Date.valueOf(textFNac.getText()));
+            hu.setTipo_doc(p.getTipo_doc());
+            daoH.incluir(hu);
+            Registro reg = new Registro();
+            reg.setEstado("activo");
+            reg.setF_ingreso(java.sql.Date.valueOf(textFechaIni.getText()));
+            reg.setF_salida(java.sql.Date.valueOf(textFechaSal.getText()));
+            Habitacion hab = new Habitacion();
+            hab.setN_hab(Integer.parseInt(textNumHab.getText()));
+            reg.setHabitacion(hab);
+            reg.setReserva(null);
+            reg.setOcupantes(new ArrayList<>());
 
         } catch (Exception ex) {
             System.out.println("ERROR!!!:  " + ex.getMessage());

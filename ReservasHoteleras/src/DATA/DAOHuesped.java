@@ -31,8 +31,8 @@ public class DAOHuesped implements DAO<Huesped> {
             st.setDate(3, t.getF_nacimiento());
 
             st.executeUpdate();//guarda los cambios
-            st.close();
             conexion.commit();
+            st.close();
         } catch (SQLException e) {
             throw e;
         } finally {
