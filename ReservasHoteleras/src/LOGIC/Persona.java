@@ -37,6 +37,18 @@ public class Persona {
         tipo_doc = "";
     }
 
+    public Persona(Persona h) {
+        nombres = h.getNombres();
+        apellidos = h.getApellidos();
+        barrio = h.getBarrio();
+        ciudad = h.getCiudad();
+        documento = h.getDocumento();
+        telfijo = h.getTelfijo();
+        telmovil = h.getTelmovil();
+        direccion = h.getDireccion();
+        pais = h.getPais();
+        tipo_doc = h.getTipo_doc();
+    }
     //Métodos accesores
     public String getNombres() {
         return nombres;

@@ -22,6 +22,12 @@ public class Huesped extends Persona {
         f_nacimiento = new Date(0);
         registros = new ArrayList<>();
     }
+    
+    public Huesped(Huesped h, Persona p) {
+        super(p);
+        f_nacimiento = h.getF_nacimiento();
+        registros = new ArrayList<>();
+    }
 
     public Date getF_nacimiento() {
         return f_nacimiento;

@@ -71,7 +71,7 @@ public class DAOReserva implements DAO<Reserva> {
         try {
             Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("UPDATE reserva SET f_inicio = ?, f_reserva = ?, q_dias = ?, "
-                    + "q_ocupantes = ?, i_reserva = ?, k_numeo_hab = ?, k_tipo_doc = ?, k_numero_doc = ? WHERE k_ide_res  = ?");
+                    + "q_ocupantes = ?, i_reserva = ?, k_numero_hab = ?, k_tipo_doc = ?, k_numero_doc = ? WHERE k_id_res  = ?");
             st.setDate(1, t.getF_inicio());
             st.setDate(2, t.getF_reserva());
             st.setInt(3, t.getDias());
@@ -87,7 +87,7 @@ public class DAOReserva implements DAO<Reserva> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+          //  Conexion.getInstance().desconexion();
         }
     }
 

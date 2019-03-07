@@ -20,6 +20,7 @@ import LOGIC.Huesped;
 import LOGIC.Reserva;
 import com.toedter.calendar.JDateChooser;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -165,15 +166,27 @@ public class RegistroConReserva extends JFrame {
             LOGIC.Reserva res = new Reserva();
             res.setId_reserva(Integer.parseInt(txtNumRes.getText()));
             res = new Reserva(daoRS.recuperar(res));
-            res.setEstado("pagado");
-            daoRS.actualizar(res);
+            res.setEstado("pagada");
+ //           daoRS.actualizar(res);
             //Guardar huesped
             DAOHuesped daoHu = new DAOHuesped();
             Huesped hu = new Huesped();
-            hu.setF_nacimiento(Date.valueOf(f.getFecha(jdc)));
+            
+            String s = f.getFecha(jdc);
+            SimpleDateFormat sdf = new SimpleDateFormat("YYYY-mm-dd");
+            String[] parsed = s.split("/");
+            java.sql.Date data = java.sql.Date.valueOf(parsed[2] + "-" + parsed[1] + "-" + parsed[0]);
+
+            hu.setF_nacimiento(data);
             hu.setDocumento(res.getPersona().getDocumento());
             hu.setTipo_doc(res.getPersona().getTipo_doc());
-            daoHu.incluir(hu);
+            hu = new Huesped(daoHu.recuperar(hu), res.getPersona());
+            if (hu.getNombres() == "") {
+                daoHu.incluir(hu);
+            }else{
+                daoHu.actualizar(hu);
+            }
+           
             
             if (res.getOcupantes() > 1) {
                 RegistroAcompañantes ra = new RegistroAcompañantes();

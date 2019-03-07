@@ -43,7 +43,19 @@ public class DAOHuesped implements DAO<Huesped> {
 
     @Override
     public void actualizar(Huesped t) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Conexion conexion = Conexion.getInstance();
+            PreparedStatement st = conexion.getConexion().prepareStatement("UPDATE huesped  SET F_NACIMIENTO =?");
+            st.setDate(1, t.getF_nacimiento());
+
+            st.executeUpdate();//guarda los cambios
+            st.close();
+            conexion.commit();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            //Conexion.getInstance().desconexion();
+        }
     }
 
     @Override
