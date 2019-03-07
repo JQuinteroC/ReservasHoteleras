@@ -5,43 +5,38 @@
  */
 package LOGIC;
 
-import java.sql.Date;
-import GUI.RegistroSinReserva;
 /**
  *
  * @author estudiantes
  */
 public class Persona {
     //RegistroSinReserva datos = new RegistroSinReserva();
-    
-    private String nombres;
-    private String apellidos;
-    private int documento;
-    private long telfijo;
-    private long telmovil;
-    private String barrio;
-    private String ciudad;
-    private String direccion;
-    private String pais;
-    private String tipo_doc;
-    private Date f_nacimiento;
-    
-    
+
+    protected String nombres;
+    protected String apellidos;
+    protected String documento;
+    protected long telfijo;
+    protected long telmovil;
+    protected String barrio;
+    protected String ciudad;
+    protected String direccion;
+    protected String pais;
+    protected String tipo_doc;
+
 //método constructor    
-    public Persona(){
-        nombres="";
-        apellidos="";
-        barrio="";
-        ciudad="";
-        documento=0;
-        telfijo=0;
-        telmovil=0;
-        direccion="";
-        pais="";
-        tipo_doc="";
-        f_nacimiento = new Date(0);
+    public Persona() {
+        nombres = "";
+        apellidos = "";
+        barrio = "";
+        ciudad = "";
+        documento = "";
+        telfijo = 0;
+        telmovil = 0;
+        direccion = "";
+        pais = "";
+        tipo_doc = "";
     }
-    
+
     //Métodos accesores
     public String getNombres() {
         return nombres;
@@ -59,11 +54,11 @@ public class Persona {
         this.apellidos = apellidos;
     }
 
-    public int getDocumento() {
+    public String getDocumento() {
         return documento;
     }
 
-    public void setDocumento(int documento) {
+    public void setDocumento(String documento) {
         this.documento = documento;
     }
 
@@ -123,13 +118,9 @@ public class Persona {
         this.tipo_doc = tipo_doc;
     }
 
-//    public Date getF_nacimiento() {
-//        return f_nacimiento;
-//    }
-//
-//    public void setF_nacimiento(Date f_nacimiento) {
-//        this.f_nacimiento = f_nacimiento;
-//    }
+    @Override
+    public String toString() {
+        return "\nPersona: {" + tipo_doc + ", " + documento + ", " + apellidos + ", " + nombres + ", tipo_doc=" + ']';
+    }
 
- 
 }
