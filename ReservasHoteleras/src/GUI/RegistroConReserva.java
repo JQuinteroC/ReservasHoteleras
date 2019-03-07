@@ -6,6 +6,7 @@
 package GUI;
 
 import DATA.DAOHuesped;
+import DATA.DAORegistro;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -17,10 +18,13 @@ import javax.swing.JTextField;
 import DATA.DAOReserva;
 import LOGIC.FormatoCalendar;
 import LOGIC.Huesped;
+import LOGIC.Registro;
 import LOGIC.Reserva;
 import com.toedter.calendar.JDateChooser;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -167,7 +171,7 @@ public class RegistroConReserva extends JFrame {
             res.setId_reserva(Integer.parseInt(txtNumRes.getText()));
             res = new Reserva(daoRS.recuperar(res));
             res.setEstado("pagada");
- //           daoRS.actualizar(res);
+           daoRS.actualizar(res); 
             //Guardar huesped
             DAOHuesped daoHu = new DAOHuesped();
             Huesped hu = new Huesped();
@@ -181,12 +185,30 @@ public class RegistroConReserva extends JFrame {
             hu.setDocumento(res.getPersona().getDocumento());
             hu.setTipo_doc(res.getPersona().getTipo_doc());
             hu = new Huesped(daoHu.recuperar(hu), res.getPersona());
+            
             if (hu.getNombres() == "") {
                 daoHu.incluir(hu);
             }else{
                 daoHu.actualizar(hu);
             }
            
+            //Guardar registro
+            DAORegistro daoReg = new DAORegistro(); 
+            Registro reg = new Registro();
+            //reg.setId_registro(daoReg.recuperarSerial() + 1000);
+                Calendar fec = Calendar.getInstance();
+                java.sql.Date fechaAct = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            reg.setF_ingreso(fechaAct);
+                fec.add(Calendar.DAY_OF_YEAR, res.getDias());
+                java.sql.Date fechaSal = new java.sql.Date(fec.getTime().getTime());
+            reg.setF_salida(fechaSal);
+            reg.setEstado("activo");
+            reg.setReserva(res);
+            ArrayList<Huesped> hue = new ArrayList<>();
+            hue.add(hu);
+            reg.setHabitacion(res.getHabitacion());
+            reg.setOcupantes(hue);
+            daoReg.incluir(reg);
             
             if (res.getOcupantes() > 1) {
                 RegistroAcompañantes ra = new RegistroAcompañantes();
