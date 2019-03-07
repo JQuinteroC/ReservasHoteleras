@@ -1,7 +1,9 @@
 package GUI;
 
 import DATA.DAOPersona;
+import LOGIC.FormatoCalendar;
 import LOGIC.Persona;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -16,7 +18,7 @@ import javax.swing.JTextField;
  * @author estudiantes
  */
 public class RegistroSinReserva extends JFrame {
-
+    FormatoCalendar f = new FormatoCalendar();
     Persona p = new Persona();
     JLabel etqNomb = new JLabel("Registro de datos");
     JLabel etqDig = new JLabel("Digite");
@@ -42,7 +44,7 @@ public class RegistroSinReserva extends JFrame {
     JTextField textDir = new JTextField();
     JTextField textTlfijo = new JTextField();
     JTextField textTlcel = new JTextField();
-    JTextField textFNac = new JTextField();
+    JDateChooser jdc = new JDateChooser();
     JTextField textNumHab = new JTextField();
     JTextField textNoches = new JTextField();
     JButton btnEnv = new JButton("ENVIAR");
@@ -84,7 +86,7 @@ public class RegistroSinReserva extends JFrame {
         c.add(textDir);
         c.add(textTlfijo);
         c.add(textTlcel);
-        c.add(textFNac);
+        c.add(jdc);
         c.add(textNumHab);
         c.add(textNoches);
         c.add(btnDis);
@@ -183,10 +185,10 @@ public class RegistroSinReserva extends JFrame {
         textTlcel.setBackground(new Color(0, 51, 51));
         textTlcel.setForeground(Color.white);
         textTlcel.setFont(new Font("Montserrat", 1, 14));
-        textFNac.setBounds(400, 500, 150, 25);
-        textFNac.setBackground(new Color(0, 51, 51));
-        textFNac.setForeground(Color.white);
-        textFNac.setFont(new Font("Montserrat", 1, 14));
+        jdc.setBounds(400, 500, 150, 25);
+        jdc.setBackground(new Color(0, 51, 51));
+        jdc.setForeground(Color.white);
+        jdc.setFont(new Font("Montserrat", 1, 14));
         textNumHab.setBounds(400, 530, 150, 25);
         textNumHab.setBackground(new Color(0, 51, 51));
         textNumHab.setForeground(Color.white);

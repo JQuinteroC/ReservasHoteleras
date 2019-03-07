@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  * @author david
  */
 public class HabitacionesDisponibles extends JFrame{
-FormatoCalendar f = new FormatoCalendar();
+    FormatoCalendar f = new FormatoCalendar();
     JTable tblHabDis = new JTable();
     JScrollPane scHabDis = new JScrollPane(tblHabDis);
     JLabel etqDis = new JLabel("Las habitaciones disponibles son: ");

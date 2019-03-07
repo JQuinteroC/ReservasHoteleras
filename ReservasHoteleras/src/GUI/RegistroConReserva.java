@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import LOGIC.FormatoCalendar;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -20,13 +22,14 @@ import javax.swing.JTextField;
  * @author david
  */
 public class RegistroConReserva extends JFrame{
+    FormatoCalendar f = new FormatoCalendar();
     JLabel etqDig = new JLabel("Digite el numero de reserva asignado");
     JLabel etqNId = new JLabel("El numero de identificacion");
     JLabel etqTId = new JLabel("El tipo de documento");
     JLabel etqFNac = new JLabel("La fecha de nacimiento");
     JTextField textNId = new JTextField();
     JTextField txtNumRes = new JTextField();
-    JTextField textFNac = new JTextField();
+    JDateChooser jdc = new JDateChooser();
     JButton btnReg = new JButton("REGISTRAR");
     JButton btnVol = new JButton("VOLVER");
     JComboBox<String> cbTId = new JComboBox<String>();
@@ -44,7 +47,7 @@ public class RegistroConReserva extends JFrame{
         c.add(etqFNac);
         c.add(txtNumRes);
         c.add(textNId);
-        c.add(textFNac);
+        c.add(jdc);
         c.add(cbTId);
         c.add(btnReg);
         c.add(btnVol);
@@ -73,10 +76,10 @@ public class RegistroConReserva extends JFrame{
         cbTId.addItem("Tarjeta de identidad");
         cbTId.addItem("Pasaporte");
         cbTId.setSelectedIndex(-1);
-        textFNac.setBounds(400,160,150,25);
-        textFNac.setBackground(new Color(0,51,51));
-        textFNac.setForeground(Color.white);
-        textFNac.setFont(new Font("Montserrat", 1, 14));
+        jdc.setBounds(400,160,150,25);
+        jdc.setBackground(new Color(0,51,51));
+        jdc.setForeground(Color.white);
+        jdc.setFont(new Font("Montserrat", 1, 14));
         
         btnReg.setBounds(50, 230, 150, 35);
         btnReg.addActionListener(new java.awt.event.ActionListener() {

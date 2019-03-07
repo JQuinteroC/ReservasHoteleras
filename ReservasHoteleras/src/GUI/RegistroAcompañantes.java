@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import LOGIC.FormatoCalendar;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -20,6 +22,7 @@ import javax.swing.JTextField;
  * @author david
  */
 public class RegistroAcompañantes extends JFrame{
+    FormatoCalendar f = new FormatoCalendar();
     JLabel etqNomb = new JLabel("Registro de datos");
     JLabel etqDig = new JLabel("Digite");
     JLabel etqNId = new JLabel("El numero de identificacion");
@@ -44,7 +47,7 @@ public class RegistroAcompañantes extends JFrame{
     JTextField textDir = new JTextField();
     JTextField textTlfijo = new JTextField();
     JTextField textTlcel = new JTextField();
-    JTextField textFNac = new JTextField();
+    JDateChooser jdc = new JDateChooser();
     JTextField textNumHab = new JTextField();
     JTextField textNoches = new JTextField();
     JButton btnHue = new JButton("SIGUIENTE HUESPED");
@@ -88,12 +91,12 @@ public class RegistroAcompañantes extends JFrame{
         c.add(textDir);
         c.add(textTlfijo);
         c.add(textTlcel);
-        c.add(textFNac);
         c.add(textNumHab);
         c.add(textNoches);
         c.add(btnHue);
         c.add(btnTer);
         c.add(btnVol);
+        c.add(jdc);
         
         
         
@@ -189,10 +192,10 @@ public class RegistroAcompañantes extends JFrame{
         textTlcel.setBackground(new Color(0,51,51));
         textTlcel.setForeground(Color.white);
         textTlcel.setFont(new Font("Montserrat", 1, 14));
-        textFNac.setBounds(400,500,150,25);
-        textFNac.setBackground(new Color(0,51,51));
-        textFNac.setForeground(Color.white);
-        textFNac.setFont(new Font("Montserrat", 1, 14));
+        jdc.setBounds(400,500,150,25);
+        jdc.setBackground(new Color(0,51,51));
+        jdc.setForeground(Color.white);
+        jdc.setFont(new Font("Montserrat", 1, 14));
         textNumHab.setBounds(400,530,150,25);
         textNumHab.setBackground(new Color(0,51,51));
         textNumHab.setForeground(Color.white);
