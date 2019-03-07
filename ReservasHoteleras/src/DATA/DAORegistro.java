@@ -53,7 +53,7 @@ public class DAORegistro implements DAO<Registro> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
 
     }
@@ -77,7 +77,7 @@ public class DAORegistro implements DAO<Registro> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
     }
 
@@ -135,7 +135,7 @@ public class DAORegistro implements DAO<Registro> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
         return lista;
     }

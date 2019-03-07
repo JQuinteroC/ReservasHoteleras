@@ -36,7 +36,7 @@ public class DAOHuesped implements DAO<Huesped> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
 
     }
@@ -95,7 +95,7 @@ public class DAOHuesped implements DAO<Huesped> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
         return lista;
     }
@@ -142,7 +142,7 @@ public class DAOHuesped implements DAO<Huesped> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
         return h;
     }
