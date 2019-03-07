@@ -2,6 +2,7 @@ package GUI;
 
 import DATA.DAOHuesped;
 import DATA.DAOPersona;
+import DATA.DAORegistro;
 import LOGIC.Habitacion;
 import LOGIC.Huesped;
 import LOGIC.Persona;
@@ -324,7 +325,11 @@ public class RegistroSinReserva extends JFrame {
             hab.setN_hab(Integer.parseInt(textNumHab.getText()));
             reg.setHabitacion(hab);
             reg.setReserva(null);
-            reg.setOcupantes(new ArrayList<>());
+            ArrayList<Huesped> hue = new ArrayList<>();
+            hue.add(hu);
+            reg.setOcupantes(hue);
+            DAORegistro daoR = new DAORegistro();
+            daoR.incluir(reg);
 
         } catch (Exception ex) {
             System.out.println("ERROR!!!:  " + ex.getMessage());
