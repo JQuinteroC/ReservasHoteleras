@@ -214,7 +214,7 @@ public class RegistroConReserva extends JFrame {
                 RegistroAcompañantes ra = new RegistroAcompañantes();
                 setVisible(false);
             } else {
-                //Llenar huesped
+                JOptionPane.showMessageDialog(null, "¡Check-in realizado correctamente!");
             }
         } else{
             JOptionPane.showMessageDialog(null, "¡Hay campos vacios!");
