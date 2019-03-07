@@ -105,9 +105,11 @@ public class DAOHuesped implements DAO<Huesped> {
         Huesped h = new Huesped();
         try {
             Conexion conexion = Conexion.getInstance();
-            PreparedStatement st = conexion.getConexion().prepareStatement("SELECT * FROM Huesped");
+            PreparedStatement st = conexion.getConexion().prepareStatement("SELECT * FROM huesped WHERE k_tipo_doc = ? AND k_numero_doc = ?");
+            st.setString(1, t.getTipo_doc());
+            st.setString(2, t.getDireccion());
             ResultSet rs = st.executeQuery();
-            if (rs.first()) {
+            if (rs.next()) {
                 h.setF_nacimiento(rs.getDate("F_NACIMIENTO"));
                 ArrayList<Persona> p = (ArrayList<Persona>) (new DAOPersona()).recuperarTodos();
                 for (Persona per : p) {
@@ -121,19 +123,6 @@ public class DAOHuesped implements DAO<Huesped> {
                         h.setTelfijo(per.getTelfijo());
                         h.setTelmovil(per.getTelmovil());
                         break;
-                    }
-                }
-                ArrayList<Registro> registros = (ArrayList<Registro>) (new DAORegistro()).recuperarTodos();
-                PreparedStatement st2 = conexion.getConexion().prepareStatement("SELECT R.K_ID_REG FROM Huesped_Registro HR, "
-                        + "Registro R WHERE HR.K_NUMERO_DOC = ? and HR.K_TIPO_DOC");
-                st.setString(1, h.getDocumento());
-                st.setString(2, h.getTipo_doc());
-                ResultSet rs2 = st.executeQuery();
-                while (rs.next()) {
-                    for (Registro reg : registros) {
-                        if (rs.getInt("K_ID_REG") == reg.getId_registro()) {
-                            h.getRegistros().add(reg);
-                        }
                     }
                 }
             }
