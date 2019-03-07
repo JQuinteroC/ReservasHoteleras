@@ -5,21 +5,33 @@
  */
 package GUI;
 
+import DATA.DAOHuesped;
+import DATA.DAOPersona;
+import LOGIC.FormatoCalendar;
+import LOGIC.Huesped;
+import LOGIC.Persona;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import oracle.net.aso.p;
 
 /**
  *
  * @author david
  */
-public class RegistroAcompañantes extends JFrame{
+public class RegistroAcompañantes extends JFrame {
+
+    FormatoCalendar f = new FormatoCalendar();
+    Persona p = new Persona();
     JLabel etqNomb = new JLabel("Registro de datos");
     JLabel etqDig = new JLabel("Digite");
     JLabel etqNId = new JLabel("El numero de identificacion");
@@ -44,24 +56,22 @@ public class RegistroAcompañantes extends JFrame{
     JTextField textDir = new JTextField();
     JTextField textTlfijo = new JTextField();
     JTextField textTlcel = new JTextField();
-    JTextField textFNac = new JTextField();
+    JDateChooser jdc = new JDateChooser();
     JTextField textNumHab = new JTextField();
     JTextField textNoches = new JTextField();
     JButton btnHue = new JButton("SIGUIENTE HUESPED");
     JButton btnVol = new JButton("VOLVER");
     JButton btnTer = new JButton("TERMINAR");
-    
-    
-    
+
     JComboBox<String> cbTId = new JComboBox<String>();
-    
+
     public RegistroAcompañantes() {
-            
+
         Container c = getContentPane();
         c.setLayout(null);
         this.setTitle("Registro sin reserva");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         c.setBackground(Color.DARK_GRAY);
         c.add(etqNomb);
         c.add(etqDig);
@@ -88,15 +98,13 @@ public class RegistroAcompañantes extends JFrame{
         c.add(textDir);
         c.add(textTlfijo);
         c.add(textTlcel);
-        c.add(textFNac);
+        c.add(jdc);
         c.add(textNumHab);
         c.add(textNoches);
         c.add(btnHue);
         c.add(btnTer);
         c.add(btnVol);
-        
-        
-        
+
         etqNomb.setBounds(50, 20, 250, 30);
         etqNomb.setFont(new Font("Montserrat", 1, 26));
         etqNomb.setForeground(Color.GREEN);
@@ -142,12 +150,12 @@ public class RegistroAcompañantes extends JFrame{
         etqNoches.setBounds(50, 560, 250, 25);
         etqNoches.setForeground(Color.white);
         etqNoches.setFont(new Font("Montserrat", 1, 14));
-        textNId.setBounds(400,200,150,25);
-        textNId.setBackground(new Color(0,51,51));
+        textNId.setBounds(400, 200, 150, 25);
+        textNId.setBackground(new Color(0, 51, 51));
         textNId.setForeground(Color.white);
         textNId.setFont(new Font("Montserrat", 1, 14));
         cbTId.setBounds(400, 230, 170, 25);
-        cbTId.setFont(new Font("Montserrat", 1, 14));        
+        cbTId.setFont(new Font("Montserrat", 1, 14));
         cbTId.addItem("Cedula de ciudadania");
         cbTId.addItem("Tarjeta de identidad");
         cbTId.addItem("Pasaporte");
@@ -157,55 +165,59 @@ public class RegistroAcompañantes extends JFrame{
                 cbTIdActionPerformed(evt);
             }
         });
-        textNombre.setBounds(400,260,150,25);
-        textNombre.setBackground(new Color(0,51,51));
+        textNombre.setBounds(400, 260, 150, 25);
+        textNombre.setBackground(new Color(0, 51, 51));
         textNombre.setForeground(Color.white);
         textNombre.setFont(new Font("Montserrat", 1, 14));
-        textApellido.setBounds(400,290,150,25);
-        textApellido.setBackground(new Color(0,51,51));
+        textApellido.setBounds(400, 290, 150, 25);
+        textApellido.setBackground(new Color(0, 51, 51));
         textApellido.setForeground(Color.white);
         textApellido.setFont(new Font("Montserrat", 1, 14));
-        textPais.setBounds(400,320,150,25);
-        textPais.setBackground(new Color(0,51,51));
+        textPais.setBounds(400, 320, 150, 25);
+        textPais.setBackground(new Color(0, 51, 51));
         textPais.setForeground(Color.white);
         textPais.setFont(new Font("Montserrat", 1, 14));
-        textCiudad.setBounds(400,350,150,25);
-        textCiudad.setBackground(new Color(0,51,51));
+        textCiudad.setBounds(400, 350, 150, 25);
+        textCiudad.setBackground(new Color(0, 51, 51));
         textCiudad.setForeground(Color.white);
         textCiudad.setFont(new Font("Montserrat", 1, 14));
-        textBarrio.setBounds(400,380,150,25);
-        textBarrio.setBackground(new Color(0,51,51));
+        textBarrio.setBounds(400, 380, 150, 25);
+        textBarrio.setBackground(new Color(0, 51, 51));
         textBarrio.setForeground(Color.white);
         textBarrio.setFont(new Font("Montserrat", 1, 14));
-        textDir.setBounds(400,410,150,25);
-        textDir.setBackground(new Color(0,51,51));
+        textDir.setBounds(400, 410, 150, 25);
+        textDir.setBackground(new Color(0, 51, 51));
         textDir.setForeground(Color.white);
         textDir.setFont(new Font("Montserrat", 1, 14));
-        textTlfijo.setBounds(400,440,150,25);
-        textTlfijo.setBackground(new Color(0,51,51));
+        textTlfijo.setBounds(400, 440, 150, 25);
+        textTlfijo.setBackground(new Color(0, 51, 51));
         textTlfijo.setForeground(Color.white);
         textTlfijo.setFont(new Font("Montserrat", 1, 14));
-        textTlcel.setBounds(400,470,150,25);
-        textTlcel.setBackground(new Color(0,51,51));
+        textTlcel.setBounds(400, 470, 150, 25);
+        textTlcel.setBackground(new Color(0, 51, 51));
         textTlcel.setForeground(Color.white);
         textTlcel.setFont(new Font("Montserrat", 1, 14));
-        textFNac.setBounds(400,500,150,25);
-        textFNac.setBackground(new Color(0,51,51));
-        textFNac.setForeground(Color.white);
-        textFNac.setFont(new Font("Montserrat", 1, 14));
-        textNumHab.setBounds(400,530,150,25);
-        textNumHab.setBackground(new Color(0,51,51));
+        jdc.setBounds(400, 500, 150, 25);
+        jdc.setBackground(new Color(0, 51, 51));
+        jdc.setForeground(Color.white);
+        jdc.setFont(new Font("Montserrat", 1, 14));
+        textNumHab.setBounds(400, 530, 150, 25);
+        textNumHab.setBackground(new Color(0, 51, 51));
         textNumHab.setForeground(Color.white);
         textNumHab.setFont(new Font("Montserrat", 1, 14));
-        textNoches.setBounds(400,560,150,25);
-        textNoches.setBackground(new Color(0,51,51));
+        textNoches.setBounds(400, 560, 150, 25);
+        textNoches.setBackground(new Color(0, 51, 51));
         textNoches.setForeground(Color.white);
         textNoches.setFont(new Font("Montserrat", 1, 14));
         btnHue.setBounds(250, 650, 200, 50);
         btnHue.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnHueActionPerformed(evt);
-        }
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    btnHueActionPerformed(evt);
+                } catch (Exception ex) {
+                    Logger.getLogger(RegistroAcompañantes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         });
         btnVol.setBounds(50, 650, 100, 35);
         btnVol.addActionListener(new java.awt.event.ActionListener() {
@@ -220,84 +232,99 @@ public class RegistroAcompañantes extends JFrame{
             }
         });
         setVisible(true);
-        setSize(700,800);
-        
-        
+        setSize(700, 800);
+
     }
-    
+
     //Es el actionPerfomed para enviar el tipo de documento
     public void cbTIdActionPerformed(java.awt.event.ActionEvent evt) {
-        /*
-        
-        if ("Cedula de ciudadania".equals(cbTId.getSelectedItem().toString())){
-        p.setTipo_doc("CC");//envio la cadena de caracteres al aributo en la clase persona
-        System.out.println("TIPO:"+p.getTipo_doc());
-        }
-        
-        else {
-            if ("Tarjeta de identidad".equals(cbTId.getSelectedItem().toString())){
-             p.setTipo_doc("TI");//envio la cadena de caracteres al aributo en la clase persona
-             System.out.println("TIPO:"+p.getTipo_doc());
-        }
-            else{
-             p.setTipo_doc("PP");//envio la cadena de caracteres al aributo en la clase persona
-             System.out.println("TIPO:"+p.getTipo_doc());
+
+        if ("Cedula de ciudadania".equals(cbTId.getSelectedItem().toString())) {
+            p.setTipo_doc("CC");//envio la cadena de caracteres al aributo en la clase persona
+            System.out.println("TIPO:" + p.getTipo_doc());
+        } else {
+            if ("Tarjeta de identidad".equals(cbTId.getSelectedItem().toString())) {
+                p.setTipo_doc("TI");//envio la cadena de caracteres al aributo en la clase persona
+                System.out.println("TIPO:" + p.getTipo_doc());
+            } else {
+                p.setTipo_doc("PP");//envio la cadena de caracteres al aributo en la clase persona
+                System.out.println("TIPO:" + p.getTipo_doc());
             }
-            
-        } */
+
+        }
     }
+
     //acciones del botón enviar
-     public void btnHueActionPerformed(java.awt.event.ActionEvent evt1) {
-         
-         /*
-        DAOPersona dao = new DAOPersonaImpl();//se cera uan instancia de la clase que controla la bd
-        int numdocu = Integer.parseInt(textNId.getText());
-        p.setDocumento(numdocu);
-        System.out.println("Doc en persona: "+p.getDocumento());
-        
+    public void btnHueActionPerformed(java.awt.event.ActionEvent evt1) throws Exception {
+
+        DAOPersona dao = new DAOPersona();//se cera uan instancia de la clase que controla la bd
+
+        p.setDocumento(textNId.getText());
+        System.out.println("Doc en persona: " + p.getDocumento());
+
         p.setNombres(textNombre.getText());
-        System.out.println("Nombres en persona: "+p.getNombres());
-        
+        System.out.println("Nombres en persona: " + p.getNombres());
+
         p.setApellidos(textApellido.getText());
-        System.out.println("Apellidos en persona: "+p.getApellidos());
-        
+        System.out.println("Apellidos en persona: " + p.getApellidos());
+
         long lg = Long.parseLong(textTlfijo.getText());
         p.setTelfijo(lg);
-        System.out.println("#Fijo en persona: "+p.getTelfijo());
-        
+        System.out.println("#Fijo en persona: " + p.getTelfijo());
+
         long lg2 = Long.parseLong(textTlcel.getText());
         p.setTelmovil(lg2);
-        System.out.println("Movil en persona: "+p.getTelmovil());
-        
+        System.out.println("Movil en persona: " + p.getTelmovil());
+
         p.setBarrio(textBarrio.getText());
-        System.out.println("barrio en persona: "+p.getBarrio());
-        
+        System.out.println("barrio en persona: " + p.getBarrio());
+
         p.setPais(textPais.getText());
-        System.out.println("Pais en persona: "+p.getPais());
-        
+        System.out.println("Pais en persona: " + p.getPais());
+
         p.setCiudad(textCiudad.getText());
-        System.out.println("Ciudad en persona: "+p.getCiudad());
-        
+        System.out.println("Ciudad en persona: " + p.getCiudad());
+
         p.setDireccion(textDir.getText());
-        System.out.println("Direccion en persona: "+p.getDireccion());
+        System.out.println("Direccion en persona: " + p.getDireccion());
         try {
-            dao.resgistrar(p);//se llama al metodo registrar y se le envia la persona con todos sus atributos
-  
+            dao.incluir(p);//se llama al metodo registrar y se le envia la persona con todos sus atributos
+
         } catch (Exception ex) {
-            System.out.println("ERROR!!!:  "+ex.getMessage());
-        }*/
-        RegistroAcompañantes ra = new RegistroAcompañantes();
+            System.out.println("ERROR!!!:  " + ex.getMessage());
+        }
+        Huesped hu = new Huesped();
+        DAOHuesped douhus = new DAOHuesped();
+        hu.setApellidos(p.getApellidos());
+        hu.setBarrio(p.getBarrio());
+        hu.setCiudad(p.getCiudad());
+        hu.setDireccion(p.getDireccion());
+        hu.setDocumento(p.getDocumento());
+        String s = f.getFecha(jdc);
+
+        String[] parsed = s.split("/");
+
+        java.sql.Date data = java.sql.Date.valueOf(parsed[2] + "-" + parsed[1] + "-" + parsed[0]);
+
+        hu.setF_nacimiento(data);
+        hu.setNombres(p.getNombres());
+        hu.setPais(p.getPais());
+        hu.setTelfijo(p.getTelfijo());
+        hu.setTelmovil(p.getTelmovil());
+        hu.setTipo_doc(p.getTipo_doc());
+        setVisible(false);
+        douhus.incluir(hu);
+    }
+
+    public void btnVolActionPerformed(java.awt.event.ActionEvent evt) {
+        Pregunta p = new Pregunta();
         setVisible(false);
     }
-     
-    public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
-        Pregunta p = new Pregunta();
-        setVisible(false);       
-    }
+
     public void btnTerActionPerformed(java.awt.event.ActionEvent evt) {
         JOptionPane.showMessageDialog(null, "Registro exitoso!");
         Pregunta p = new Pregunta();
-        setVisible(false);       
+        setVisible(false);
     }
-    
+
 }
