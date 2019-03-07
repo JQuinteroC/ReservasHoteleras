@@ -43,4 +43,9 @@ public class TipoHab {
         this.capacidad = capacidad;
     }
 
+    @Override
+    public String toString() {
+        return "\tTipoHab: [" + idTipHab + ", " + valorNoc + ", " + capacidad + ']';
+    }
+
 }

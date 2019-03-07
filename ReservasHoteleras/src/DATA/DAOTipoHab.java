@@ -73,4 +73,9 @@ public class DAOTipoHab implements DAO<TipoHab> {
         return lista;
     }
 
+    @Override
+    public TipoHab recuperar(TipoHab t) throws Exception {
+        return null;
+    }
+
 }

@@ -16,8 +16,8 @@ public class Conexion {
 
     private static Conexion instance;
     private Connection conexion;
-    private final String user = "hotel";//esquema de la bd
-    private final String pass = "hotel";//clave del esquema
+    private final String user = "final";//esquema de la bd
+    private final String pass = "1234";//clave del esquema
     private final String url = "jdbc:oracle:thin:@localhost:1521:xe";
 
     private Conexion() {
@@ -32,6 +32,7 @@ public class Conexion {
             }
 
         } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "CONEXION FALLIDA!" + e.getMessage());
         }
     }

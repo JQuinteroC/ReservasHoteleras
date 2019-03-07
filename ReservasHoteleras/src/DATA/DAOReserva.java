@@ -111,4 +111,9 @@ public class DAOReserva implements DAO<Reserva> {
         return lista;
     }
 
+    @Override
+    public Reserva recuperar(Reserva t) throws Exception {
+        return null;
+    }
+
 }

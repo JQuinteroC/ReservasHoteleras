@@ -60,4 +60,9 @@ public class DAOProductoServicio implements DAO<Producto_Servicio> {
         return lista;
     }
 
+    @Override
+    public Producto_Servicio recuperar(Producto_Servicio t) throws Exception {
+        return null;
+    }
+
 }

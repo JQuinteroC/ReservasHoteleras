@@ -33,4 +33,10 @@ public class Habitacion {
     public void setN_hab(int n_hab) {
         this.n_hab = n_hab;
     }
+
+    @Override
+    public String toString() {
+        return "\nHabitacion: [" + n_hab + ", " + tipo.toString() + ']';
+    }
+
 }

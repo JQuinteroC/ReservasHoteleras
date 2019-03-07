@@ -5,6 +5,8 @@
  */
 package LOGIC;
 
+import java.util.Objects;
+
 /**
  *
  * @author estudiantes
@@ -75,6 +77,32 @@ public class Producto_Servicio {
 
     public void setPrecio_unidad(double precio_unidad) {
         this.precio_unidad = precio_unidad;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + this.id_producto;
+        hash = 97 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Producto_Servicio other = (Producto_Servicio) obj;
+        if (this.id_producto != other.id_producto) {
+            return false;
+        }
+        return true;
     }
 
 }
