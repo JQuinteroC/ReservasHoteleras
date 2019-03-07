@@ -33,6 +33,17 @@ public class Reserva {
         persona = new Persona();
         habitacion = new Habitacion();
     }
+    
+    public Reserva(Reserva r) {
+        f_inicio = r.getF_inicio();
+        f_reserva = r.getF_reserva();
+        id_reserva = r.getId_reserva();
+        estado = r.getEstado();
+        dias = r.getDias();
+        ocupantes = r.getOcupantes();
+        persona = r.getPersona();
+        habitacion = r.getHabitacion();
+    }
 
     public int getId_reserva() {
         return id_reserva;
