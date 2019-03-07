@@ -5,134 +5,177 @@
  */
 package GUI;
 
+import DATA.DAOHuesped;
+import DATA.DAORegistro;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
-import java.awt.HeadlessException;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
+import DATA.DAOReserva;
+import LOGIC.FormatoCalendar;
+import LOGIC.Huesped;
+import LOGIC.Registro;
+import LOGIC.Reserva;
+import com.toedter.calendar.JDateChooser;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author david
  */
-public class Solicitud extends JFrame{
-    JLabel etqNom = new JLabel("Productos y servicios");
-    JLabel etqNumHab = new JLabel("Numero de habitacion");
-    JLabel etqNumId = new JLabel("Documento del huesped");
-    JLabel etqCodProSer = new JLabel("Codigo de producto o servicio");
-    JLabel etqNombProSer = new JLabel("Nombre de producto o servicio");
-    JLabel etqCant = new JLabel("Cantidad");
-    JLabel etqVal = new JLabel("Valor unidad");
-    JTextField txtNumHab = new JTextField();
-    JTextField txtNumId = new JTextField();
-    JTextField txtCodProSer = new JTextField();
-    JTextField txtNomProSer = new JTextField();
-    JTextField txtCant = new JTextField();
-    JTextField txtVal = new JTextField();
-    JButton btnAgr = new JButton("AGREGAR");
-    JButton btnSol = new JButton("SOLICITAR");
+public class Solicitud extends JFrame {
+    FormatoCalendar f = new FormatoCalendar();
+    JLabel etqDig = new JLabel("Digite el numero de reserva asignado");
+    JLabel etqNId = new JLabel("El numero de identificacion");
+    JLabel etqTId = new JLabel("El tipo de documento");
+    JLabel etqFNac = new JLabel("La fecha de nacimiento");
+    JTextField textNId = new JTextField();
+    JTextField txtNumRes = new JTextField();
+    JTextField textFNac = new JTextField();
+    JDateChooser jdc = new JDateChooser();
+    JButton btnReg = new JButton("Cancelar Reserva");
     JButton btnVol = new JButton("VOLVER");
-    JTable tblSol = new JTable();
-    JScrollPane jsc = new JScrollPane(tblSol);
+    JComboBox<String> cbTId = new JComboBox<String>();
 
-    public Solicitud(){
+    public Solicitud() {
         Container c = getContentPane();
         c.setLayout(null);
-        this.setTitle("Solicitar Producto o Servicio");
+        this.setTitle("Registro con reserva");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         c.setBackground(Color.DARK_GRAY);
-        
-        c.add(etqNom);
-        c.add(etqNumHab);
-        c.add(etqNumId);
-        c.add(etqCodProSer);
-        c.add(etqNombProSer);
-        c.add(etqCant);
-        c.add(etqVal);
-        c.add(txtNumHab);
-        c.add(txtNumId);
-        c.add(txtCodProSer);
-        c.add(txtNomProSer);
-        c.add(txtCant);
-        c.add(txtVal);
-        c.add(btnAgr);
-        c.add(btnSol);
+
+        c.add(etqDig);
+        c.add(etqNId);
+        c.add(etqTId);
+        c.add(etqFNac);
+        c.add(txtNumRes);
+        c.add(textNId);
+        c.add(jdc);
+        c.add(cbTId);
+        c.add(btnReg);
         c.add(btnVol);
-        c.add(jsc);
-        
-        etqNom.setBounds(100, 20, 350, 35);
-        etqNom.setFont(new Font("dialog", 1, 26));
-        etqNom.setForeground(Color.GREEN);
-        etqNumHab.setBounds(30, 60, 200, 35);
-        etqNumHab.setFont(new Font("dialog", 1, 16));
-        etqNumHab.setForeground(Color.WHITE);
-        etqNumId.setBounds(260, 60, 260, 35);
-        etqNumId.setFont(new Font("dialog", 1, 16));
-        etqNumId.setForeground(Color.WHITE);
-        etqCodProSer.setBounds(60, 150, 260, 35);
-        etqCodProSer.setFont(new Font("dialog", 1, 16));
-        etqCodProSer.setForeground(Color.WHITE);
-        etqNombProSer.setBounds(30, 250, 260, 35);
-        etqNombProSer.setFont(new Font("dialog", 1, 16));
-        etqNombProSer.setForeground(Color.WHITE);
-        etqCant.setBounds(340, 250, 120, 35);
-        etqCant.setFont(new Font("dialog", 1, 16));
-        etqCant.setForeground(Color.WHITE);
-        etqVal.setBounds(470, 250, 120, 35);
-        etqVal.setFont(new Font("dialog", 1, 16));
-        etqVal.setForeground(Color.WHITE);        
-        txtNumHab.setBounds(30, 100, 90, 35);
-        txtNumId.setBounds(260, 100, 150, 35);
-        txtCodProSer.setBounds(60, 195, 150, 35);
-        txtNomProSer.setBounds(30, 300, 270, 35);
-        txtCant.setBounds(330, 300, 100, 35);
-        txtVal.setBounds(450, 300, 120, 35);
-        btnAgr.setBounds(590, 300, 90, 35);
-        jsc.setBounds(30, 350, 570, 200);
-        tblSol.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-            },
-            new String [] {
-                "Nombre del servicio", "Cantidad", "Valor Unidad", "Valor total"
-            }
-        ));
-        btnSol.setBounds(150, 600, 150, 50);
-        btnSol.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSolActionPerformed(evt);
+
+        etqDig.setBounds(50, 50, 300, 35);
+        etqDig.setFont(new Font("dialog", 1, 16));
+        etqDig.setForeground(Color.white);
+        etqNId.setBounds(50, 100, 300, 25);
+        etqNId.setForeground(Color.white);
+        etqNId.setFont(new Font("Montserrat", 1, 14));
+        etqTId.setBounds(50, 130, 200, 25);
+        etqTId.setForeground(Color.white);
+        etqTId.setFont(new Font("Montserrat", 1, 14));
+        etqFNac.setBounds(50, 160, 250, 25);
+        etqFNac.setForeground(Color.white);
+        etqFNac.setFont(new Font("Montserrat", 1, 14));
+        txtNumRes.setBounds(380, 50, 170, 35);
+        txtNumRes.setBackground(new Color(0, 51, 51));
+        txtNumRes.setForeground(Color.white);
+        txtNumRes.setFont(new Font("Montserrat", 1, 14));
+        txtNumRes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                try {
+                    txtNumResFocusLost(evt);
+                } catch (Exception ex) {
+                    Logger.getLogger(RegistroConReserva.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
-        btnVol.setBounds(490, 600, 150, 50);
+        textNId.setBounds(380, 100, 170, 25);
+        textNId.setBackground(new Color(0, 51, 51));
+        textNId.setForeground(Color.white);
+        textNId.setFont(new Font("Montserrat", 1, 14));
+        cbTId.setBounds(380, 130, 170, 25);
+        cbTId.setFont(new Font("Montserrat", 1, 14));
+        cbTId.addItem("Cedula de ciudadania");
+        cbTId.addItem("Tarjeta de identidad");
+        cbTId.addItem("Pasaporte");
+        cbTId.setSelectedIndex(-1);
+        jdc.setBounds(380,160,170,25);
+        jdc.setFont(new Font("Montserrat", 1, 14));
+   //     textFNac.setBounds(400, 160, 150, 25);
+   //     textFNac.setBackground(new Color(0, 51, 51));
+   //     textFNac.setForeground(Color.white);
+   //     textFNac.setFont(new Font("Montserrat", 1, 14));
+
+        btnReg.setBounds(50, 230, 150, 35);
+        btnReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    btnRegActionPerformed(evt);
+                } catch (Exception ex) {
+                    Logger.getLogger(RegistroConReserva.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        btnVol.setBounds(250, 230, 150, 35);
+        btnReg.setBounds(50, 250, 150, 35);
+        btnVol.setBounds(250, 250, 150, 35);
         btnVol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolActionPerformed(evt);
             }
         });
-        
-        
-        
+
         setVisible(true);
-        setSize(800,750);
+        setSize(600, 400);
     }
-    public void btnSolActionPerformed(java.awt.event.ActionEvent evt) { 
-        JOptionPane.showMessageDialog(this, "SOLICITUD HECHA \n EXITOSAMENTE");
+
+    public void btnVolActionPerformed(java.awt.event.ActionEvent evt) {
+        Pregunta p = new Pregunta();
+        setVisible(false);
     }
-    public void btnVolActionPerformed(java.awt.event.ActionEvent evt) { 
-        Menu m = new Menu();
-        setVisible(false);       
+
+    private void txtNumResFocusLost(java.awt.event.FocusEvent evt) throws Exception {
+        if (!"".equals(txtNumRes.getText())) {
+            DAOReserva daoRS = new DAOReserva();
+            LOGIC.Reserva res = new Reserva();
+            res.setId_reserva(Integer.parseInt(txtNumRes.getText()));
+            res = new Reserva(daoRS.recuperar(res));
+            if (res.getPersona().getTipo_doc() == "") {
+                JOptionPane.showMessageDialog(null, "El número de reserva ingresado, no corresponde a una reserva actual");
+                txtNumRes.setText("");
+                txtNumRes.requestFocus();
+            } else {
+                textNId.setText(res.getPersona().getDocumento());
+                switch (res.getPersona().getTipo_doc()) {
+                    case "CC":
+                        cbTId.setSelectedIndex(0);
+                        break;
+                    case "PP":
+                        cbTId.setSelectedIndex(2);
+                        break;
+                    case "TI":
+                        cbTId.setSelectedIndex(1);
+                        break;
+                }
+                jdc.requestFocus();
+            }
+        }
     }
-    
-    
-    
-    
+
+    public void btnRegActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+        if (!"".equals(txtNumRes.getText()) && !"".equals(textNId.getText()) && cbTId.getSelectedIndex() != -1 && f.getFecha(jdc) != null) {
+            //Actualizar reserva y tener información de la reserva
+            DAOReserva daoRS = new DAOReserva();
+            LOGIC.Reserva res = new Reserva();
+            res.setId_reserva(Integer.parseInt(txtNumRes.getText()));
+            res.setEstado("cancelada");
+            daoRS.actualizar(res);
+            
+        } else{
+            JOptionPane.showMessageDialog(null, "¡Hay campos vacios!");
+        }
+    }
+
 }
