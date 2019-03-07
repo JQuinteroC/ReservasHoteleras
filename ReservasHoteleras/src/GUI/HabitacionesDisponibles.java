@@ -12,12 +12,16 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -111,20 +115,41 @@ public class HabitacionesDisponibles extends JFrame {
         System.out.println(s1);
         System.out.println(s2);
         mostrar_tabla();
+        if (s1 == "" && s2 == "") {
+            JOptionPane.showMessageDialog(null, "digite la fecha");
+        } else {
+        }
+        btnCon.setEnabled(false);
     }
 
     public void mostrar_tabla() throws Exception {
+        String s1 = f.getFecha(jdc);
+        String s2 = f.getFecha(jdc2);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date parsed = null;
+            Date parsed2 = null;
+            parsed = sdf.parse(s1);
+            parsed2 = sdf.parse(s2);
+            java.sql.Date data = new java.sql.Date(parsed.getTime());
+            java.sql.Date data2 = new java.sql.Date(parsed2.getTime());
+            System.out.println(data);
+            System.out.println(data2);
+            List<Habitacion> lista = (new DAOHabitacion()).recuperarDisponible(data, data2);
+            DefaultTableModel model = (DefaultTableModel) tblHabDis.getModel();
+            Object[] filas = new Object[4];
+            for (int i = 0; i < lista.size(); i++) {
+                filas[0] = lista.get(i).getN_hab();
+                filas[1] = lista.get(i).getTipo().getIdTipHab();
+                filas[2] = lista.get(i).getTipo().getValorNoc();
+                filas[3] = lista.get(i).getTipo().getCapacidad();
+                model.addRow(filas);
 
-        List<Habitacion> lista = (new DAOHabitacion()).recuperarDisponible("2019-03-07", "2019-03-16");
-        DefaultTableModel model = (DefaultTableModel) tblHabDis.getModel();
-        Object[] filas = new Object[4];
-        for (int i = 0; i < lista.size(); i++) {
-            filas[0] = lista.get(i).getN_hab();
-            filas[1] = lista.get(i).getTipo().getIdTipHab();
-            filas[2] = lista.get(i).getTipo().getValorNoc();
-            filas[3] = lista.get(i).getTipo().getCapacidad();
-            model.addRow(filas);
-
+            }
+        }catch (ParseException e1) {
+            e1.printStackTrace();
         }
+
+        
     }
 }

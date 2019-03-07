@@ -89,15 +89,15 @@ public class DAOHabitacion implements DAO<Habitacion> {
         return null;
     }
 
-    public List<Habitacion> recuperarDisponible(String fechaIni, String fechaFin) throws Exception {
+    public List<Habitacion> recuperarDisponible(java.sql.Date fechaIni, java.sql.Date fechaFin) throws Exception {
         List<Habitacion> lista = new ArrayList<>();
         try {
             Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("SELECT h.k_numero , h.k_idtipo , t.q_capacidad, t.v_noche FROM habitacion h, tipo_habitacion t where h.k_numero NOT IN (SELECT h.k_numero FROM habitacion h, registro rg  WHERE rg.f_salida BETWEEN ? AND ? AND rg.k_numero_hab = h.k_numero) AND h.k_numero NOT IN(SELECT h.k_numero FROM habitacion h, reserva rs WHERE rs.f_inicio BETWEEN ? AND ? AND rs.k_numero_hab = h.k_numero) AND t.k_idtipo = h.k_idtipo");
-            st.setDate(1, java.sql.Date.valueOf(fechaIni));
-            st.setDate(2, java.sql.Date.valueOf(fechaFin));
-            st.setDate(3, java.sql.Date.valueOf(fechaIni));
-            st.setDate(4, java.sql.Date.valueOf(fechaFin));
+            st.setDate(1, fechaIni);
+            st.setDate(2, fechaFin);
+            st.setDate(3, fechaIni);
+            st.setDate(4, fechaFin);
             //este select como posible opcion para mostrar en habitacionesdisponibles la tabla
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
