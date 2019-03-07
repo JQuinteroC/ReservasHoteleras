@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -335,8 +336,10 @@ public class ReservaIngresoDatos extends JFrame {
         TipoHab th = new TipoHab();
         hb.setTipo(th);
         res.setHabitacion(hb);
+        res.setPersona(p);
         DAOReserva reserva = new DAOReserva();
         reserva.incluir(res);
+        JOptionPane.showMessageDialog(null, "Reserva exitosa");
         
     }
 
