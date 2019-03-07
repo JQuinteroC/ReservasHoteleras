@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Registro {
 
     //Declaración de varibales
+    static int serial = 1001;
     private int id_registro;
     private String estado;
     private Date f_ingreso;
@@ -25,7 +26,7 @@ public class Registro {
 
     //Método constructor e inicialización de variables
     public Registro() {
-        id_registro = 0;
+        id_registro = serial++;
         estado = "";
         f_ingreso = new Date(0);
         f_salida = new Date(0);

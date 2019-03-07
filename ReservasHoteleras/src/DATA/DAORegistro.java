@@ -25,18 +25,31 @@ public class DAORegistro implements DAO<Registro> {
     public void incluir(Registro t) throws Exception {
         try {
             Conexion conexion = Conexion.getInstance();
-            PreparedStatement st = conexion.getConexion().prepareStatement("INSERT INTO Registro (K_ID_REG, F_INGRESO, F_SALIDA, I_REGISTRO, K_ID_RES, "
-                    + "K_NUMERO_HAB VALUES (?,?,?,?,?,?)");
+            PreparedStatement st;
+            if (t.getReserva() != null) {
+                st = conexion.getConexion().prepareStatement("INSERT INTO Registro (K_ID_REG, F_INGRESO, F_SALIDA, I_REGISTRO, K_ID_RES, "
+                        + "K_NUMERO_HAB VALUES (?,?,?,?,?,?)");
 
-            st.setInt(1, t.getId_registro());
-            st.setDate(2, t.getF_ingreso());
-            st.setDate(3, t.getF_salida());
-            st.setString(4, t.getEstado());
-            st.setInt(5, t.getReserva().getId_reserva());
-            st.setInt(6, t.getHabitacion().getN_hab());
-            st.executeUpdate();//guarda los cambios
-            st.close();
+                st.setInt(1, t.getId_registro());
+                st.setDate(2, t.getF_ingreso());
+                st.setDate(3, t.getF_salida());
+                st.setString(4, t.getEstado());
+                st.setInt(5, t.getReserva().getId_reserva());
+                st.setInt(6, t.getHabitacion().getN_hab());
+                st.executeUpdate();//guarda los cambios
+                st.close();
+            } else {
+                st = conexion.getConexion().prepareStatement("INSERT INTO Registro (K_ID_REG, F_INGRESO, F_SALIDA, I_REGISTRO, "
+                        + "K_NUMERO_HAB VALUES (?,?,?,?,?)");
 
+                st.setInt(1, t.getId_registro());
+                st.setDate(2, t.getF_ingreso());
+                st.setDate(3, t.getF_salida());
+                st.setString(4, t.getEstado());
+                st.setInt(5, t.getHabitacion().getN_hab());
+                st.executeUpdate();//guarda los cambios
+                st.close();
+            }
             for (Huesped h : t.getOcupantes()) {
                 st = conexion.getConexion().prepareStatement("INSERT INTO Huesped_Registro (K_ID_REG, K_TIPO_DOC, "
                         + "K_NUMERO_DOC, F_ENTRADA, F_SALIDA VALUES (?,?,?,?,?)");
