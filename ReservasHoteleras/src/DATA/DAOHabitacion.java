@@ -55,6 +55,12 @@ public class DAOHabitacion implements DAO<Habitacion> {
             Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("SELECT H.K_NUMERO, TH.K_IDTIPO, TH.V_NOCHE, "
                     + "TH.Q_CAPACIDAD FROM Tipo_Habitacion TH, Habitacion H WHERE H.K_IDTIPO = TH.K_IDTIPO");
+//            "SELECT h.k_numero as Habitación_Numero, h.k_idtipo as Tipo_Habitación ,"
+//                    + " t.q_capacidad as Capacidad, t.v_noche as Valor_Noche" + "FROM habitacion h, tipo_habitacion t" +
+//                    "where h.k_numero NOT IN (SELECT h.k_numero FROM habitacion h, registro rg" + "WHERE rg.f_salida BETWEEN sysdate AND '16/03/2019' AND rg.k_numero_hab = h.k_numero)" +
+//                    "AND h.k_numero NOT IN(SELECT h.k_numero FROM habitacion h, reserva rs " + "WHERE rs.f_inicio BETWEEN sysdate AND '16/03/2019' AND rs.k_numero_hab = h.k_numero)" +
+//                    "AND t.k_idtipo = h.k_idtipo;");
+            //este select como posible opcion para mostrar en habitacionesdisponibles la tabla
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Habitacion p = new Habitacion();
