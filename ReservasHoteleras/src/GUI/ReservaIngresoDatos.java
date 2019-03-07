@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -38,6 +39,7 @@ public class ReservaIngresoDatos extends JFrame {
     JLabel etqNumHab = new JLabel("Numero de la habitacion disponible");
     JLabel etqNoches = new JLabel("La cantidad de noches");
     JLabel etqCanPer = new JLabel("La cantidad de personas");
+    JLabel etqNumRes = new JLabel("Numero de reserva: ");
 
     JTextField textNId = new JTextField();
     JTextField textNombre = new JTextField();
@@ -51,6 +53,7 @@ public class ReservaIngresoDatos extends JFrame {
     JTextField textNumHab = new JTextField();
     JTextField textNoches = new JTextField();
     JTextField textCanPer = new JTextField();
+    JTextField textNumRes = new JTextField();
     JButton btnRes = new JButton("RESERVAR");
     JButton btnVol = new JButton("VOLVER");
     JButton btnDis = new JButton("Consultar disponibilidad");
@@ -80,6 +83,7 @@ public class ReservaIngresoDatos extends JFrame {
         c.add(etqCanPer);
         c.add(etqNumHab);
         c.add(etqNoches);
+        c.add(etqNumRes);
         c.add(textNId);
         c.add(cbTId);
         c.add(textNombre);
@@ -93,6 +97,7 @@ public class ReservaIngresoDatos extends JFrame {
         c.add(textCanPer);
         c.add(textNumHab);
         c.add(textNoches);
+        c.add(textNumRes);
         c.add(btnDis);
         c.add(btnRes);
         c.add(btnVol);
@@ -142,6 +147,9 @@ public class ReservaIngresoDatos extends JFrame {
         etqNoches.setBounds(50, 560, 250, 25);
         etqNoches.setForeground(Color.white);
         etqNoches.setFont(new Font("Montserrat", 1, 14));
+        etqNumRes.setBounds(50, 600, 250, 25);
+        etqNumRes.setForeground(Color.white);
+        etqNumRes.setFont(new Font("Montserrat", 1, 14));
         textNId.setBounds(400, 200, 150, 25);
         textNId.setBackground(new Color(0, 51, 51));
         textNId.setForeground(Color.white);
@@ -201,6 +209,11 @@ public class ReservaIngresoDatos extends JFrame {
         textNoches.setBackground(new Color(0, 51, 51));
         textNoches.setForeground(Color.white);
         textNoches.setFont(new Font("Montserrat", 1, 14));
+        textNumRes.setBounds(400, 600, 150, 25);
+        textNumRes.setEnabled(false);
+        textNumRes.setBackground(new Color(0, 51, 51));
+        textNumRes.setForeground(Color.white);
+        textNumRes.setFont(new Font("Montserrat", 1, 14));
         btnRes.setBounds(250, 650, 100, 50);
         btnRes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,6 +257,7 @@ public class ReservaIngresoDatos extends JFrame {
 
     //acciones del botón enviar
     public void btnResActionPerformed(java.awt.event.ActionEvent evt1) {
+        /*
         DAOPersona dao = new DAOPersona();//se cera uan instancia de la clase que controla la bd
         String numdocu = textNId.getText();
         p.setDocumento(numdocu);
@@ -279,7 +293,9 @@ public class ReservaIngresoDatos extends JFrame {
 
         } catch (Exception ex) {
             System.out.println("ERROR!!!:  " + ex.getMessage());
-        }
+        }*/
+        textNumRes.setText(generarRandom());
+        
     }
 
     public void btnVolActionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,6 +307,12 @@ public class ReservaIngresoDatos extends JFrame {
         HabitacionesDisponibles hd = new HabitacionesDisponibles();
         btnRes.setEnabled(true);
 
+    }
+    public String generarRandom(){
+        long num;
+        num= (long)(Math.random()*99000*+1);
+        String a= Long.toString(num);
+        return a;
     }
 
 }

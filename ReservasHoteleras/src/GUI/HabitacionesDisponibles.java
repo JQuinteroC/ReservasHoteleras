@@ -10,6 +10,9 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -97,10 +100,23 @@ public class HabitacionesDisponibles extends JFrame{
         setVisible(false);       
     }
     public void btnConActionPerformed(java.awt.event.ActionEvent evt) {
-        txtObtDate.setText(f.getFecha(jdc)); 
         String s1 = f.getFecha(jdc);
         String s2 = f.getFecha(jdc2);
-        System.out.println(s1);
-        System.out.println(s2);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    
+        try {
+            Date parsed = null;
+            Date parsed2 = null;
+            parsed = sdf.parse(s1);
+            parsed2 = sdf.parse(s2);
+            java.sql.Date data = new java.sql.Date(parsed.getTime());
+            java.sql.Date data2 = new java.sql.Date(parsed2.getTime());
+            System.out.println(parsed);
+            System.out.println(parsed2);
+            System.out.println(data);
+            System.out.println(data2);
+        } catch (ParseException e1) {
+            e1.printStackTrace();
+        }
     }    
 }
