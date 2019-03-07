@@ -20,17 +20,12 @@ import java.util.List;
  */
 public class DAOHuesped implements DAO<Huesped> {
 
-    private final Conexion conexion;
-
-    public DAOHuesped() {
-        conexion = Conexion.getInstance(); //se conecta la BD
-    }
-
     @Override
     public void incluir(Huesped t) throws Exception {
         try {
-            PreparedStatement st = conexion.getConexion().prepareStatement("INSERT INTO Huesped (K_TIPO_DOC, K_NUMERO_DOC, F_NACIMIENTO) VALUES (?,?,?)");
-
+            Conexion conexion = Conexion.getInstance();
+            PreparedStatement st = conexion.getConexion().prepareStatement("INSERT INTO Huesped (K_TIPO_DOC, K_NUMERO_DOC,"
+                    + " F_NACIMIENTO) VALUES (?,?,?)");
             st.setString(1, t.getTipo_doc());
             st.setString(2, t.getDocumento());
             st.setDate(3, t.getF_nacimiento());
@@ -41,7 +36,7 @@ public class DAOHuesped implements DAO<Huesped> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
 
     }
@@ -60,6 +55,7 @@ public class DAOHuesped implements DAO<Huesped> {
     public List<Huesped> recuperarTodos() throws Exception {
         List<Huesped> lista = new ArrayList<>();
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("SELECT * FROM Huesped");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -89,7 +85,7 @@ public class DAOHuesped implements DAO<Huesped> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
         return lista;
     }

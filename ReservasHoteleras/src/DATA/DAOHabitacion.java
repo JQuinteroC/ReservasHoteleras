@@ -19,15 +19,10 @@ import java.util.List;
  */
 public class DAOHabitacion implements DAO<Habitacion> {
 
-    private final Conexion conexion;
-
-    public DAOHabitacion() {
-        conexion = Conexion.getInstance(); //se conecta la BD
-    }
-
     @Override
     public void incluir(Habitacion t) throws Exception {
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("INSERT INTO Habitacion (K_NUMERO, K_IDTIPO) VALUES (?,?)");
 
             st.setInt(1, t.getN_hab());
@@ -39,7 +34,7 @@ public class DAOHabitacion implements DAO<Habitacion> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
     }
 
@@ -57,6 +52,7 @@ public class DAOHabitacion implements DAO<Habitacion> {
     public List<Habitacion> recuperarTodos() throws Exception {
         List<Habitacion> lista = new ArrayList<>();
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("SELECT H.K_NUMERO, TH.K_IDTIPO, TH.V_NOCHE, "
                     + "TH.Q_CAPACIDAD FROM Tipo_Habitacion TH, Habitacion H WHERE H.K_IDTIPO = TH.K_IDTIPO");
             ResultSet rs = st.executeQuery();
@@ -75,7 +71,7 @@ public class DAOHabitacion implements DAO<Habitacion> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
         return lista;
     }

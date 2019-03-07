@@ -17,12 +17,6 @@ import java.util.List;
  */
 public class DAOCuenta implements DAO<Cuenta> {
 
-    private final Conexion conexion;
-
-    public DAOCuenta() {
-        conexion = Conexion.getInstance(); //se conecta la BD
-    }
-
     @Override
     public void incluir(Cuenta t) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
