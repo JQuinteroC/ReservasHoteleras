@@ -6,10 +6,18 @@
 package GUI;
 
 import DATA.DAOPersona;
+import DATA.DAOReserva;
+import LOGIC.FormatoCalendar;
+import LOGIC.Habitacion;
 import LOGIC.Persona;
+import LOGIC.TipoHab;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -21,8 +29,9 @@ import javax.swing.JTextField;
  * @author david
  */
 public class ReservaIngresoDatos extends JFrame {
-
+    FormatoCalendar f = new FormatoCalendar();
     Persona p = new Persona();
+    LOGIC.Reserva res = new LOGIC.Reserva();
     JLabel etqNomb = new JLabel("Registro de datos");
     JLabel etqDig = new JLabel("Digite");
     JLabel etqNId = new JLabel("El numero de identificacion");
@@ -38,6 +47,8 @@ public class ReservaIngresoDatos extends JFrame {
     JLabel etqNumHab = new JLabel("Numero de la habitacion disponible");
     JLabel etqNoches = new JLabel("La cantidad de noches");
     JLabel etqCanPer = new JLabel("La cantidad de personas");
+    JLabel etqFecEnt = new JLabel("Fecha de entrada");
+    JLabel etqFecSal = new JLabel("Fecha Salida");
 
     JTextField textNId = new JTextField();
     JTextField textNombre = new JTextField();
@@ -49,11 +60,14 @@ public class ReservaIngresoDatos extends JFrame {
     JTextField textTlfijo = new JTextField();
     JTextField textTlcel = new JTextField();
     JTextField textNumHab = new JTextField();
+    JDateChooser jdc = new JDateChooser();
+    JDateChooser jdc2 = new JDateChooser();
     JTextField textNoches = new JTextField();
     JTextField textCanPer = new JTextField();
     JButton btnRes = new JButton("RESERVAR");
     JButton btnVol = new JButton("VOLVER");
     JButton btnDis = new JButton("Consultar disponibilidad");
+    JButton btnObt = new JButton("Obtener numero de reserva");
 
     JComboBox<String> cbTId = new JComboBox<String>();
 
@@ -80,6 +94,8 @@ public class ReservaIngresoDatos extends JFrame {
         c.add(etqCanPer);
         c.add(etqNumHab);
         c.add(etqNoches);
+        c.add(etqFecEnt);
+        c.add(etqFecSal);
         c.add(textNId);
         c.add(cbTId);
         c.add(textNombre);
@@ -96,6 +112,9 @@ public class ReservaIngresoDatos extends JFrame {
         c.add(btnDis);
         c.add(btnRes);
         c.add(btnVol);
+        c.add(btnObt);
+        c.add(jdc);
+        c.add(jdc2);
 
         etqNomb.setBounds(50, 20, 250, 30);
         etqNomb.setFont(new Font("Montserrat", 1, 26));
@@ -142,10 +161,18 @@ public class ReservaIngresoDatos extends JFrame {
         etqNoches.setBounds(50, 560, 250, 25);
         etqNoches.setForeground(Color.white);
         etqNoches.setFont(new Font("Montserrat", 1, 14));
+        etqFecEnt.setBounds(50, 590, 250, 25);
+        etqFecEnt.setForeground(Color.white);
+        etqFecEnt.setFont(new Font("Montserrat", 1, 14));
+        etqFecSal.setBounds(50, 620, 250, 25);
+        etqFecSal.setForeground(Color.white);
+        etqFecSal.setFont(new Font("Montserrat", 1, 14));
         textNId.setBounds(400, 200, 150, 25);
         textNId.setBackground(new Color(0, 51, 51));
         textNId.setForeground(Color.white);
         textNId.setFont(new Font("Montserrat", 1, 14));
+        jdc.setBounds(400, 590, 150, 25);
+        jdc2.setBounds(400, 620, 150, 25);
         cbTId.setBounds(400, 230, 170, 25);
         cbTId.setFont(new Font("Montserrat", 1, 14));
         cbTId.addItem("Cedula de ciudadania");
@@ -201,10 +228,20 @@ public class ReservaIngresoDatos extends JFrame {
         textNoches.setBackground(new Color(0, 51, 51));
         textNoches.setForeground(Color.white);
         textNoches.setFont(new Font("Montserrat", 1, 14));
+        btnObt.setBounds(420, 650, 150, 50);
+        btnObt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObtActionPerformed(evt);
+            }
+        });
         btnRes.setBounds(250, 650, 100, 50);
         btnRes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResActionPerformed(evt);
+                try {
+                    btnResActionPerformed(evt);
+                } catch (Exception ex) {
+                    Logger.getLogger(ReservaIngresoDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         btnDis.setBounds(50, 70, 250, 35);
@@ -243,8 +280,8 @@ public class ReservaIngresoDatos extends JFrame {
     }
 
     //acciones del botón enviar
-    public void btnResActionPerformed(java.awt.event.ActionEvent evt1) {
-        DAOPersona dao = new DAOPersona();//se cera uan instancia de la clase que controla la bd
+    public void btnResActionPerformed(java.awt.event.ActionEvent evt1) throws Exception {
+        DAOPersona daoP = new DAOPersona();//se cera uan instancia de la clase que controla la bd
         String numdocu = textNId.getText();
         p.setDocumento(numdocu);
         System.out.println("Doc en persona: " + p.getDocumento());
@@ -275,11 +312,32 @@ public class ReservaIngresoDatos extends JFrame {
         p.setDireccion(textDir.getText());
         System.out.println("Direccion en persona: " + p.getDireccion());
         try {
-            dao.incluir(p);//se llama al metodo registrar y se le envia la persona con todos sus atributos
+            daoP.incluir(p);//se llama al metodo registrar y se le envia la persona con todos sus atributos
 
         } catch (Exception ex) {
             System.out.println("ERROR!!!:  " + ex.getMessage());
         }
+        
+        res.setDias(Integer.parseInt(textNoches.getText()));
+        res.setEstado("pendiente");
+        
+        String s = f.getFecha(jdc);
+        String s1 = f.getFecha(jdc2);          
+            String[] parsed = s.split("/");
+            String[] parsed1 = s1.split("/");
+            java.sql.Date data = java.sql.Date.valueOf(parsed[2] + "-" + parsed[1] + "-" + parsed[0]);
+            java.sql.Date data1 = java.sql.Date.valueOf(parsed1[2] + "-" + parsed1[1] + "-" + parsed1[0]);
+            
+        res.setF_inicio(data);
+        res.setF_inicio(data1);
+        Habitacion hb = new Habitacion();
+        hb.setN_hab(Integer.parseInt(textNumHab.getText()));
+        TipoHab th = new TipoHab();
+        hb.setTipo(th);
+        res.setHabitacion(hb);
+        DAOReserva reserva = new DAOReserva();
+        reserva.incluir(res);
+        
     }
 
     public void btnVolActionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,6 +349,17 @@ public class ReservaIngresoDatos extends JFrame {
         HabitacionesDisponibles hd = new HabitacionesDisponibles();
         btnRes.setEnabled(true);
 
+    }
+    public void btnObtActionPerformed(java.awt.event.ActionEvent evt) {
+        NumeroReserva nr = new NumeroReserva();
+        nr.txtNumRes.setText(generarAleatorio());
+
+    }
+    public String generarAleatorio(){
+        Long l;
+        l = (long)(Math.random()*1564667+1);
+        String a = Long.toString(l);
+        return a;
     }
 
 }
