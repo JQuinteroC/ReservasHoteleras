@@ -117,4 +117,10 @@ public class Persona {
     public void setTipo_doc(String tipo_doc) {
         this.tipo_doc = tipo_doc;
     }
+
+    @Override
+    public String toString() {
+        return "\nPersona: {" + tipo_doc + ", " + documento + ", " + apellidos + ", " + nombres + ", tipo_doc=" + ']';
+    }
+
 }

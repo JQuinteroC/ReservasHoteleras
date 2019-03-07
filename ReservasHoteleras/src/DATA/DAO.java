@@ -20,4 +20,6 @@ public interface DAO<T> {
     void eliminar(T t) throws Exception;
 
     List<T> recuperarTodos() throws Exception;
+
+    T recuperar(T t) throws Exception;
 }

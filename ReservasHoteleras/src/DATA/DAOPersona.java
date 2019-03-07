@@ -133,4 +133,38 @@ public class DAOPersona implements DAO<Persona> {
         return lista;
 
     }
+
+    @Override
+    public Persona recuperar(Persona t) throws Exception {
+        Persona p = new Persona();
+        try {
+            Conexion conexion = Conexion.getInstance();
+            PreparedStatement st = conexion.getConexion().prepareStatement("SELECT * FROM PERSONA Where K_NUMERO_DOC = ? and K_TIPO_DOC = ?");
+            st.setString(1, t.getDocumento());
+            st.setString(2, t.getTipo_doc());
+            ResultSet rs = st.executeQuery();
+            if (rs.first()) {
+                p.setDocumento(rs.getString("K_NUMERO_DOC"));
+                p.setNombres(rs.getString("N_NOMBRE"));
+                p.setApellidos(rs.getString("N_APELLIDO"));
+                p.setBarrio(rs.getString("N_DIRECCION"));
+                p.setTipo_doc(rs.getString("K_TIPO_DOC"));
+                p.setTelfijo(rs.getLong("Q_TELEFONO_FIJ"));
+                p.setTelmovil(rs.getLong("Q_TELEFONO_MOV"));
+                p.setPais(rs.getString("N_PAIS"));
+                p.setCiudad(rs.getString("N_CIUDAD"));
+                p.setBarrio(rs.getString("N_BARRIO"));
+                p.setDireccion(rs.getString("N_DIRECCION"));
+            } else {
+                return null;
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            Conexion.getInstance().desconexion();
+        }
+        return p;
+    }
 }

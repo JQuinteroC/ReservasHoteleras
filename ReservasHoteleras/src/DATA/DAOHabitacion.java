@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -60,6 +62,42 @@ public class DAOHabitacion implements DAO<Habitacion> {
 //                    "where h.k_numero NOT IN (SELECT h.k_numero FROM habitacion h, registro rg" + "WHERE rg.f_salida BETWEEN sysdate AND '16/03/2019' AND rg.k_numero_hab = h.k_numero)" +
 //                    "AND h.k_numero NOT IN(SELECT h.k_numero FROM habitacion h, reserva rs " + "WHERE rs.f_inicio BETWEEN sysdate AND '16/03/2019' AND rs.k_numero_hab = h.k_numero)" +
 //                    "AND t.k_idtipo = h.k_idtipo;");
+            //este select como posible opcion para mostrar en habitacionesdisponibles la tabla
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Habitacion p = new Habitacion();
+                p.setN_hab(rs.getInt("K_NUMERO"));
+                TipoHab tp = new TipoHab();
+                tp.setIdTipHab(rs.getString("K_IDTIPO"));
+                tp.setValorNoc(rs.getDouble("V_NOCHE"));
+                tp.setCapacidad(rs.getInt("Q_CAPACIDAD"));
+                p.setTipo(tp);
+                lista.add(p);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            Conexion.getInstance().desconexion();
+        }
+        return lista;
+    }
+
+    @Override
+    public Habitacion recuperar(Habitacion t) throws Exception {
+        return null;
+    }
+
+    public List<Habitacion> recuperarDisponible(String fechaIni, String fechaFin) throws Exception {
+        List<Habitacion> lista = new ArrayList<>();
+        try {
+            Conexion conexion = Conexion.getInstance();
+            PreparedStatement st = conexion.getConexion().prepareStatement("SELECT h.k_numero , h.k_idtipo , t.q_capacidad, t.v_noche FROM habitacion h, tipo_habitacion t where h.k_numero NOT IN (SELECT h.k_numero FROM habitacion h, registro rg  WHERE rg.f_salida BETWEEN ? AND ? AND rg.k_numero_hab = h.k_numero) AND h.k_numero NOT IN(SELECT h.k_numero FROM habitacion h, reserva rs WHERE rs.f_inicio BETWEEN ? AND ? AND rs.k_numero_hab = h.k_numero) AND t.k_idtipo = h.k_idtipo");
+            st.setDate(1, java.sql.Date.valueOf(fechaIni));
+            st.setDate(2, java.sql.Date.valueOf(fechaFin));
+            st.setDate(3, java.sql.Date.valueOf(fechaIni));
+            st.setDate(4, java.sql.Date.valueOf(fechaFin));
             //este select como posible opcion para mostrar en habitacionesdisponibles la tabla
             ResultSet rs = st.executeQuery();
             while (rs.next()) {

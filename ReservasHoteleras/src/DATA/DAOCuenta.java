@@ -6,9 +6,6 @@
 package DATA;
 
 import LOGIC.Cuenta;
-import LOGIC.Producto_Servicio;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -35,6 +32,11 @@ public class DAOCuenta implements DAO<Cuenta> {
     @Override
     public List<Cuenta> recuperarTodos() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Cuenta recuperar(Cuenta t) throws Exception {
+        return null;
     }
 
 }

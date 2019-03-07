@@ -140,4 +140,9 @@ public class DAORegistro implements DAO<Registro> {
         return lista;
     }
 
+    @Override
+    public Registro recuperar(Registro t) throws Exception {
+        return null;
+    }
+
 }

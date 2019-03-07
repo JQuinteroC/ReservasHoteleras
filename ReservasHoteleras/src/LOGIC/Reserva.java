@@ -98,4 +98,9 @@ public class Reserva {
         this.habitacion = habitacion;
     }
 
+    @Override
+    public String toString() {
+        return "\nReserva: [" + id_reserva + ", " + f_inicio + ", " + f_reserva + ", " + dias + ", " + ocupantes + ", " + estado + ", " + persona + ", " + habitacion + '}';
+    }
+
 }

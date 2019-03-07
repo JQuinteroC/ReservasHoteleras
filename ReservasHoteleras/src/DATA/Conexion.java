@@ -32,6 +32,7 @@ public class Conexion {
             }
 
         } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "CONEXION FALLIDA!" + e.getMessage());
         }
     }
