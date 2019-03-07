@@ -19,15 +19,10 @@ import java.util.List;
  */
 public class DAOTipoHab implements DAO<TipoHab> {
 
-    private final Conexion conexion;
-
-    public DAOTipoHab() {
-        conexion = Conexion.getInstance(); //se conecta la BD
-    }
-
     @Override
     public void incluir(TipoHab t) throws Exception {
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("INSERT INTO Tipo_Habitacion (K_IDTIPO, V_NOCHE, Q_CAPACIDAD) VALUES (?,?,?)");
 
             st.setString(1, t.getIdTipHab());
@@ -40,7 +35,7 @@ public class DAOTipoHab implements DAO<TipoHab> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
     }
 
@@ -58,6 +53,7 @@ public class DAOTipoHab implements DAO<TipoHab> {
     public List<TipoHab> recuperarTodos() throws Exception {
         List<TipoHab> lista = new ArrayList<>();
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("SELECT * FROM Tipo_Habitacion");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -72,7 +68,7 @@ public class DAOTipoHab implements DAO<TipoHab> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
         return lista;
     }

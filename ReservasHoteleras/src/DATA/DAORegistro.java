@@ -21,15 +21,10 @@ import java.util.List;
  */
 public class DAORegistro implements DAO<Registro> {
 
-    private final Conexion conexion;
-
-    public DAORegistro() {
-        conexion = Conexion.getInstance(); //se conecta la BD
-    }
-
     @Override
     public void incluir(Registro t) throws Exception {
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("INSERT INTO Registro (K_ID_REG, F_INGRESO, F_SALIDA, I_REGISTRO, K_ID_RES, "
                     + "K_NUMERO_HAB VALUES (?,?,?,?,?,?)");
 
@@ -58,7 +53,7 @@ public class DAORegistro implements DAO<Registro> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
 
     }
@@ -66,6 +61,7 @@ public class DAORegistro implements DAO<Registro> {
     @Override
     public void actualizar(Registro t) throws Exception {
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("UPDATE Registro set K_ID_REG = ?, F_INGRESO = ?, F_SALIDA = ?, "
                     + "I_REGISTRO = ?, K_ID_RES = ?, K_NUMERO_HAB = ? WHERE K_ID_REG  = ?");
             st.setInt(1, t.getId_registro());
@@ -81,7 +77,7 @@ public class DAORegistro implements DAO<Registro> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
     }
 
@@ -94,6 +90,7 @@ public class DAORegistro implements DAO<Registro> {
     public List<Registro> recuperarTodos() throws Exception {
         List<Registro> lista = new ArrayList<>();
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("SELECT * FROM Registro");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -138,7 +135,7 @@ public class DAORegistro implements DAO<Registro> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
         return lista;
     }

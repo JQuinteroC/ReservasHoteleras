@@ -18,12 +18,6 @@ import java.util.List;
  */
 public class DAOProductoServicio implements DAO<Producto_Servicio> {
 
-    private final Conexion conexion;
-
-    public DAOProductoServicio() {
-        conexion = Conexion.getInstance(); //se conecta la BD
-    }
-
     @Override
     public void incluir(Producto_Servicio t) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -43,6 +37,7 @@ public class DAOProductoServicio implements DAO<Producto_Servicio> {
     public List<Producto_Servicio> recuperarTodos() throws Exception {
         List<Producto_Servicio> lista = new ArrayList<>();
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("SELECT * FROM Producto");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -60,7 +55,7 @@ public class DAOProductoServicio implements DAO<Producto_Servicio> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
         return lista;
     }

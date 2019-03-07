@@ -20,16 +20,11 @@ import java.util.List;
  */
 public class DAOReserva implements DAO<Reserva> {
 
-    private final Conexion conexion;
-
-    public DAOReserva() {
-        conexion = Conexion.getInstance(); //se conecta la BD
-    }
-
     //este metodo se encarga de insertar datos desde la app a la base de datos en la tabla reserva
     @Override
     public void incluir(Reserva reserva) throws Exception {
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("INSERT INTO RESERVA (K_ID_RES, F_INICIO, F_RESERVA, Q_DIAS, Q_OCUPANTES, "
                     + "I_RESERVA, K_NUMERO_HAB, K_TIPO_DOC, K_NUMERO_DOC) VALUES (?,?,?,?,?,?,?,?,?)");
 
@@ -49,7 +44,7 @@ public class DAOReserva implements DAO<Reserva> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
     }
 
@@ -57,6 +52,7 @@ public class DAOReserva implements DAO<Reserva> {
     @Override
     public void eliminar(Reserva reserva) throws Exception {
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("DELETE  from RESERVA  where K_ID_RES  = ?");
             st.setInt(1, reserva.getId_reserva());
             st.executeUpdate();
@@ -65,7 +61,7 @@ public class DAOReserva implements DAO<Reserva> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
     }
 
@@ -78,6 +74,7 @@ public class DAOReserva implements DAO<Reserva> {
     public List<Reserva> recuperarTodos() throws Exception {
         List<Reserva> lista = new ArrayList<>();
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("SELECT * FROM RESERVA");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -109,7 +106,7 @@ public class DAOReserva implements DAO<Reserva> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
         return lista;
     }

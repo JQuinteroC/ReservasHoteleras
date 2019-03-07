@@ -20,12 +20,6 @@ import java.util.List;
 //esta clase se encarga de utilizar la plantilla de CRUD y utilizar las funciones de la clase Conexion 
 public class DAOPersona implements DAO<Persona> {
 
-    private final Conexion conexion;
-
-    public DAOPersona() {
-        conexion = Conexion.getInstance(); //se conecta la BD
-    }
-
     //este metodo se encarga de insertar datos desde la app a la base de datos
     @Override
     public void incluir(Persona persona) throws Exception {
@@ -34,6 +28,7 @@ public class DAOPersona implements DAO<Persona> {
             y se llama al metodo set(tipo e dato) que coinicde con el tipo definido en la capa logic
             se asigna un indice que indica el orden de las columnas y el respectivo valor
              */
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("INSERT INTO PERSONA (K_NUMERO_DOC, K_TIPO_DOC, N_NOMBRE, "
                     + "N_APELLIDO, Q_TELEFONO_FIJ, Q_TELEFONO_MOV, N_PAIS, N_CIUDAD, N_BARRIO, N_DIRECCION) VALUES (?,?,?,?,?,?,?,?,?,?)");
 
@@ -54,7 +49,7 @@ public class DAOPersona implements DAO<Persona> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
     }
 
@@ -62,6 +57,7 @@ public class DAOPersona implements DAO<Persona> {
     @Override
     public void actualizar(Persona persona) throws Exception {
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("UPDATE PERSONA set K_NUMERO_DOC = ?, K_TIPO_DOC = ?, N_NOMBRE = ?, "
                     + "N_APELLIDO = ?, Q_TELEFONO_FIJ = ?, Q_TELEFONO_MOV = ?, N_PAIS = ?, N_CIUDAD = ?, N_BARRIO = ?, N_DIRECCION = ? WHERE K_NUMERO_DOC  = ? and K_TIPO_DOC = ?");
             st.setString(1, persona.getDocumento());
@@ -82,7 +78,7 @@ public class DAOPersona implements DAO<Persona> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
     }
 
@@ -90,6 +86,7 @@ public class DAOPersona implements DAO<Persona> {
     @Override
     public void eliminar(Persona persona) throws Exception {
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("DELETE  from PERSONA  where K_NUMERO_DOC  = ? and K_TIPO_DOC = ?");
             st.setString(1, persona.getDocumento());
             st.setString(2, persona.getTipo_doc());
@@ -99,7 +96,7 @@ public class DAOPersona implements DAO<Persona> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
     }
 
@@ -108,6 +105,7 @@ public class DAOPersona implements DAO<Persona> {
     public List<Persona> recuperarTodos() throws Exception {
         List<Persona> lista = new ArrayList<>();
         try {
+            Conexion conexion = Conexion.getInstance();
             PreparedStatement st = conexion.getConexion().prepareStatement("SELECT * FROM PERSONA");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -130,7 +128,7 @@ public class DAOPersona implements DAO<Persona> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            conexion.desconexion();
+            Conexion.getInstance().desconexion();
         }
         return lista;
 
