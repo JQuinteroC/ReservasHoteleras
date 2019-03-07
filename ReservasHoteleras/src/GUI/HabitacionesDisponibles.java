@@ -112,8 +112,6 @@ public class HabitacionesDisponibles extends JFrame {
         txtObtDate.setText(f.getFecha(jdc));
         String s1 = f.getFecha(jdc);
         String s2 = f.getFecha(jdc2);
-        System.out.println(s1);
-        System.out.println(s2);
         mostrar_tabla();
         if (s1 == "" && s2 == "") {
             JOptionPane.showMessageDialog(null, "digite la fecha");
@@ -125,16 +123,12 @@ public class HabitacionesDisponibles extends JFrame {
     public void mostrar_tabla() throws Exception {
         String s1 = f.getFecha(jdc);
         String s2 = f.getFecha(jdc2);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-mm-dd");
         try {
-            Date parsed = null;
-            Date parsed2 = null;
-            parsed = sdf.parse(s1);
-            parsed2 = sdf.parse(s2);
-            java.sql.Date data = new java.sql.Date(parsed.getTime());
-            java.sql.Date data2 = new java.sql.Date(parsed2.getTime());
-            System.out.println(data);
-            System.out.println(data2);
+            String[] parsed = s1.split("/");
+            String[] parsed2 = s2.split("/");
+            java.sql.Date data = java.sql.Date.valueOf(parsed[2] + "-" + parsed[1] + "-" + parsed[0]);
+            java.sql.Date data2 = java.sql.Date.valueOf(parsed2[2] + "-" + parsed2[1] + "-" + parsed2[0]);
             List<Habitacion> lista = (new DAOHabitacion()).recuperarDisponible(data, data2);
             DefaultTableModel model = (DefaultTableModel) tblHabDis.getModel();
             Object[] filas = new Object[4];
@@ -146,10 +140,9 @@ public class HabitacionesDisponibles extends JFrame {
                 model.addRow(filas);
 
             }
-        }catch (ParseException e1) {
+        } catch (ParseException e1) {
             e1.printStackTrace();
         }
 
-        
     }
 }

@@ -49,7 +49,7 @@ public class DAOPersona implements DAO<Persona> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
     }
 
@@ -78,7 +78,7 @@ public class DAOPersona implements DAO<Persona> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
     }
 
@@ -96,7 +96,7 @@ public class DAOPersona implements DAO<Persona> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
     }
 
@@ -128,7 +128,7 @@ public class DAOPersona implements DAO<Persona> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
         return lista;
 
@@ -163,7 +163,7 @@ public class DAOPersona implements DAO<Persona> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
         return p;
     }

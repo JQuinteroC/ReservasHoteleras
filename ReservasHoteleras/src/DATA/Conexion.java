@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
  */
 public class Conexion {
 
-    private static Conexion instance;
-    private Connection conexion;
+    private static Conexion instance = null;
+    private Connection conexion = null;
     private final String user = "hotel";//esquema de la bd
     private final String pass = "hotel";//clave del esquema
     private final String url = "jdbc:oracle:thin:@localhost:1521:xe";

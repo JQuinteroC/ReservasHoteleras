@@ -36,7 +36,7 @@ public class DAOHabitacion implements DAO<Habitacion> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
     }
 
@@ -79,7 +79,7 @@ public class DAOHabitacion implements DAO<Habitacion> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            //Conexion.getInstance().desconexion();
         }
         return lista;
     }
@@ -115,7 +115,7 @@ public class DAOHabitacion implements DAO<Habitacion> {
         } catch (SQLException e) {
             throw e;
         } finally {
-            Conexion.getInstance().desconexion();
+            // Conexion.getInstance().desconexion();
         }
         return lista;
     }
