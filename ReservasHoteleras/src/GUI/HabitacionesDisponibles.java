@@ -22,15 +22,16 @@ import javax.swing.JTextField;
  * @author david
  */
 public class HabitacionesDisponibles extends JFrame{
-    FormatoCalendar f = new FormatoCalendar();
+FormatoCalendar f = new FormatoCalendar();
     JTable tblHabDis = new JTable();
     JScrollPane scHabDis = new JScrollPane(tblHabDis);
     JLabel etqDis = new JLabel("Las habitaciones disponibles son: ");
-    JLabel etqFec = new JLabel("Fecha");
+    JLabel etqFecIng = new JLabel("Fecha de ingreso");
+    JLabel etqFecSal = new JLabel("Fecha de salida");
     JLabel etqNoc = new JLabel("Cantidad de noches");
     JButton btnVol = new JButton("VOLVER");
     JDateChooser jdc = new JDateChooser();
-    JTextField txtNoc = new JTextField();
+    JDateChooser jdc2 = new JDateChooser();
     JTextField txtObtDate = new JTextField();
     JButton btnCon = new JButton("CONSULTAR");
 
@@ -44,21 +45,22 @@ public class HabitacionesDisponibles extends JFrame{
         c.add(etqDis);
         c.add(scHabDis);
         c.add(btnVol);
-        c.add(etqFec);
+        c.add(etqFecIng);
+        c.add(etqFecSal);
         c.add(etqNoc);
         c.add(jdc);
-        c.add(txtNoc);
+        c.add(jdc2);
         c.add(txtObtDate);
         c.add(btnCon);
         
-        etqFec.setBounds(50, 20, 90, 35);
-        etqFec.setFont(new Font("dialog", 1, 16));
-        etqFec.setForeground(Color.WHITE);
-        etqNoc.setBounds(350, 20, 220, 35);
-        etqNoc.setFont(new Font("dialog", 1, 16));
-        etqNoc.setForeground(Color.WHITE);
-        txtNoc.setBounds(350, 60, 90, 25);
+        etqFecIng.setBounds(50, 20, 180, 35);
+        etqFecIng.setFont(new Font("dialog", 1, 16));
+        etqFecIng.setForeground(Color.WHITE);
+        etqFecSal.setBounds(350, 20, 180, 35);
+        etqFecSal.setFont(new Font("dialog", 1, 16));
+        etqFecSal.setForeground(Color.WHITE);
         jdc.setBounds(50, 60, 150, 25);
+        jdc2.setBounds(350, 60, 150, 25);
         btnCon.setBounds(150, 120, 150, 50);
         btnCon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,9 +97,10 @@ public class HabitacionesDisponibles extends JFrame{
         setVisible(false);       
     }
     public void btnConActionPerformed(java.awt.event.ActionEvent evt) {
-        txtObtDate.setText(f.getFecha(jdc));        
-    }
-    
-    
-    
+        txtObtDate.setText(f.getFecha(jdc)); 
+        String s1 = f.getFecha(jdc);
+        String s2 = f.getFecha(jdc2);
+        System.out.println(s1);
+        System.out.println(s2);
+    }    
 }
